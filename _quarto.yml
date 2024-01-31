@@ -29,7 +29,7 @@ website:
       - 03-the_dockerfile.qmd
       - 04-build.qmd
       - 05-run.qmd
-      - 06-docker_compose.qmd
+      - 06-docker_compose.qmd 
 
 format:
   html:
