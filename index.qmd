@@ -1,5 +1,5 @@
 ---
-title: " Docker Workshop"
+title: " Docker Workshop 🐳"
 subtitle: "SDSU Data Science Symposium 2024"
 author: "Rami Krispin"
 ---
@@ -24,10 +24,44 @@ author: "Rami Krispin"
           \____\______/
 ```
 
+Welcome to the Docker for Data Science workshop! As its name implies, this workshop focuses on the foundations of Docker with data science applications. That includes the following topics:
+- Settings
+- Motivation
+- Workflow
+- The Dockerfile
+- Build
+- Run
+- Docker Compose
+
 ## Learning Objectives
 
+The main learning object is to motivate data scientists and other partitioners to use containers in their workflow. Docker has some learning curve, and the goal of this workshop is to reduce the entry barrier for new learners. No prior knowledge of Docker is needed, but it is recommended to have some familiarity with basic command line tools.
+
+By the end of this tutorial, you will:
+
+- Understand the general applications of Docker, and in particular, the ones for data science
+- Learn about the advantages and disadvantages of using Docker
+- Able to design, build, and run a container 
+
 ## Schedule
+
+The workshop will take place on Feb 5: 1:00 - 5:00 pm @ Student Union:
+
+- 1:00 - 1:30 Introduction to Docker
+- 1:30 - 2:00 General settings
+- 2:00 - 2:15 Workflow
+- 2:15 - 2:30 Break
+- 2:15 - 2:45 The Dockerfile
+- 2:45 - 3:15 Build
+- 3:15 - 3:45 Run
+- 3:45 - 4:15 Docker Compose
+- 4:15 - 5:00 General topics
 
 
 ## General Requirements
 
+To best utilize the workshop time, please install [Docker Desktop](https://www.docker.com/products/docker-desktop/) prior to the workshop and set up a [Docker Hub](https://hub.docker.com/) account. Docker Desktop is free for nonenterprise use cases.
+
+I am going to use VScode throughout the demos, and I recommend installing [VScode](https://code.visualstudio.com/) as well to follow along.
+
+The [Settings](https://ramikrispin.github.io/sdsu-docker-workshop/settings.html) section provides the installation instructions.
