@@ -175,7 +175,18 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setting-docker" id="toc-setting-docker" class="nav-link active" data-scroll-target="#setting-docker">Setting Docker</a></li>
+  <li><a href="#docker-hub" id="toc-docker-hub" class="nav-link" data-scroll-target="#docker-hub">Docker Hub</a>
+  <ul class="collapse">
+  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello World!</a></li>
+  </ul></li>
+  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VScode</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -199,8 +210,99 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>To follow this tutorial, you’ll need to set up Docker Desktop and VScode. Plus, you’ll have to create an account on Docker Hub. This section is dedicated to the workshop settings and covers the installation and configuration of Docker and VScode.</p>
+<section id="setting-docker" class="level2">
+<h2 class="anchored" data-anchor-id="setting-docker">Setting Docker</h2>
+<p>Various ways exist to build and run Docker images on different operations systems. For the purpose of this guide, we will be utilizing Docker Desktop. It is a user-friendly container management interface that is compatible with MacOS, Windows, and Linux operating systems.</p>
+<p><strong>Note:</strong> Docker Desktop is free for personal use but requires a license for commercial use. For further information, please refer to https://www.docker.com/pricing/.</p>
+To install Docker Desktop, go to Docker website and follow the installation instructions according to your OS:
+<figure class="figure">
+<img src="images/docker-install.png" width="100%" align="center" class="figure-img">
+<figcaption>
+Figure 1 - Docker Desktop download page
+</figcaption>
+</figure>
+<p><br></p>
+</section>
+<section id="docker-hub" class="level2">
+<h2 class="anchored" data-anchor-id="docker-hub">Docker Hub</h2>
+<p>Container Registry has a similar functionality as Github for code, and it uses to store and share images. There are many container registries, and the most common is Docker Hub. We will use throughout the tutorial Docker Hub to pull different images, such as Python built-in images. To register and create an account go to https://hub.docker.com and follow the registration instructions.</p>
+<p>After installing Docker Desktop and setting account on Docker Hub, open Docker Desktop, and from the command line, login to Docker Hub:</p>
+<pre class="shell"><code> docker login</code></pre>
+<p>You will have to enter your username and password, and you should expect the following output if the login is successful:</p>
+<pre class="shell"><code>Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: rkrispin
+Password:
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account.
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/</code></pre>
+<p><strong>Note:</strong> Docker Hub is completely public (for the free tier). Any image you push and store there will be available for all other users. Regardless if your container registry is public or not, <strong>NEVER</strong> store credentials, passwords, or any other sensitive information on your Docker images.</p>
+<section id="hello-world" class="level3">
+<h3 class="anchored" data-anchor-id="hello-world">Hello World!</h3>
+<p>There is no better way to test if Docker was installed properly than by running whalesay (or 🐳 say) Docker’s most <code>Hello World!</code> common example. The whalesay is an adaption of the Linux cowsay (🐮 say) game using a whale instead of a cow to print some text. Let’s run the below code from the terminal to print <code>Welcome to the Docker for Data Science Workshop! 👋🏼</code>:</p>
+<pre class="shell"><code>docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼</code></pre>
+<p>If this is the first time you are using Docker or your first time using the <code>whalesay</code> image you should expect the following message:</p>
+<pre class="shell"><code>Unable to find image 'docker/whalesay:latest' locally</code></pre>
+<p>That is a generic message that notifies that the requested image cannot be found locally, and Docker will try to pull the image from the hub (if specified) and follow by downloading the image:</p>
+<pre class="shell"><code>latest: Pulling from docker/whalesay
+Image docker.io/docker/whalesay:latest uses outdated schema1 manifest format. Please upgrade to a schema2 image for better future compatibility. More information at https://docs.docker.com/registry/spec/deprecated-schema-v1/
+e190868d63f8: Pull complete
+909cd34c6fd7: Pull complete
+0b9bfabab7c1: Pull complete
+a3ed95caeb02: Pull complete
+00bf65475aba: Pull complete
+c57b6bcc83e3: Pull complete
+8978f6879e2f: Pull complete
+8eed3712d2cf: Pull complete
+Digest: sha256:178598e51a26abbc958b8a2e48825c90bc22e641de3d31e18aaf55f3258ba93b
+Status: Downloaded newer image for docker/whalesay:latest</code></pre>
+<p>And this is the expected output:</p>
+<pre><code>
+/ Welcome to the Docker for Data Science \
+\ Workshop! 👋🏼                           /
+ ----------------------------------------
+    \
+     \
+      \
+                    ##        .
+              ## ## ##       ==
+           ## ## ## ##      ===
+       /""""""""""""""""___/ ===
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+       \______ o          __/
+        \    \        __/
+          \____\______/ </code></pre>
+<p>If you are able to run the <code>whalesay</code> app you are ready to get started with Docker.</p>
+</section>
+</section>
+<section id="installing-vscode" class="level2">
+<h2 class="anchored" data-anchor-id="installing-vscode">Installing VScode</h2>
+Installing VScode is straightforward - go to the VScode website https://code.visualstudio.com/ and click on the Download button (purple rectangle on the screenshot):
+<figure class="figure">
+<img src="images/vscode-download.png" width="100%" align="center" class="figure-img">
+<figcaption>
+Figure 2 - Visual Studio Code download page
+</figcaption>
+</figure>
+<p>Download the installation file and follow the instructions.</p>
+<p>To set the Python environment with Docker in VScode we will need the following extensions:</p>
+<ul>
+<li><strong>Dev Containers</strong> - this extension enables to open a folder and execute a code inside a Docker container (more info available <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">here</a>)</li>
+<li><strong>Python</strong> - the main Python plug-in for VScode, enables to execute, debugging, code navigation, code formatting, etc. (more info available <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">here</a>)</li>
+</ul>
+Here is how to install an extension on VScode: - Click the Extensions button on the left menu (mark with a purple arrow on the screenshot below) - Type the extension name on the search menu (see the yellow rectangular). You can see the search results below, and clicking on each extension will open a window with the extension details. - Last but not least, Click the install button (see the green rectangular) to install the extension
+<figure class="figure">
+<img src="images/vscode-extensions.png" width="100%" align="center" class="figure-img">
+<figcaption>
+Figure 3 - Steps to install extension on VScode
+</figcaption>
+</figure>
+<p><br></p>
+<p><strong>Note:</strong> The Dev Containers extension is required to launch the dockerized environment. We will see later in this tutorial how to set and install the necessary extensions for your dockerized environment automatically with the <code>devcontainer.json</code> file.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
