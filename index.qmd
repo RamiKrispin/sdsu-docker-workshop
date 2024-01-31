@@ -64,4 +64,4 @@ To best utilize the workshop time, please install [Docker Desktop](https://www.d
 
 I am going to use VScode throughout the demos, and I recommend installing [VScode](https://code.visualstudio.com/) as well to follow along.
 
-The [Settings](https://ramikrispin.github.io/sdsu-docker-workshop/settings.html) section provides the installation instructions.
+The [Settings](https://ramikrispin.github.io/sdsu-docker-workshop/01-settings.html) section provides the installation instructions.
