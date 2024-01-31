@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Rami Krispin">
 
-<title>sdsu-docker-workshop - Docker Workshop 🐳</title>
+<title>sdsu-docker-workshop - Docker Build</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Docker Workshop 🐳</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-build.html">Docker Build</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -130,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docker Workshop 🐳</span></a>
   </div>
 </li>
@@ -154,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-build.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-build.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Docker Build</span></a>
   </div>
 </li>
@@ -176,35 +175,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#general-requirements" id="toc-general-requirements" class="nav-link" data-scroll-target="#general-requirements">General Requirements</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Docker Workshop 🐳</h1>
-<p class="subtitle lead">SDSU Data Science Symposium 2024</p>
+<h1 class="title">Docker Build</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Rami Krispin </p>
-          </div>
-  </div>
     
   
     
@@ -215,53 +199,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<pre class="sehll"><code>&gt;docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼
-
-/ Welcome to the Docker for Data Science \
-\ Workshop! 👋🏼                           /
- ----------------------------------------
-    \
-     \
-      \
-                    ##        .
-              ## ## ##       ==
-           ## ## ## ##      ===
-       /""""""""""""""""___/ ===
-  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-       \______ o          __/
-        \    \        __/
-          \____\______/</code></pre>
-<p>Welcome to the Docker for Data Science workshop! As its name implies, this workshop focuses on the foundations of Docker with data science applications. That includes the following topics: - Settings - Motivation - Workflow - The Dockerfile - Build - Run - Docker Compose</p>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>The main learning object is to motivate data scientists and other partitioners to use containers in their workflow. Docker has some learning curve, and the goal of this workshop is to reduce the entry barrier for new learners.</p>
-<p>By the end of this tutorial, you will:</p>
-<ul>
-<li>Understand the general applications of Docker, and in particular, the ones for data science</li>
-<li>Learn about the advantages and disadvantages of using Docker</li>
-<li>Able to design, build, and run a container</li>
-</ul>
-</section>
-<section id="schedule" class="level2">
-<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<p>The workshop will take place on Feb 5: 1:00 - 5:00 pm @ Student Union:</p>
-<ul>
-<li>1:00 - 1:30 Introduction to Docker</li>
-<li>1:30 - 2:00 General settings</li>
-<li>2:00 - 2:15 Workflow</li>
-<li>2:15 - 2:30 Break</li>
-<li>2:15 - 2:45 The Dockerfile</li>
-<li>2:45 - 3:15 Build</li>
-<li>3:15 - 3:45 Run</li>
-<li>3:45 - 4:15 Docker Compose</li>
-<li>4:15 - 5:00 General topics</li>
-</ul>
-</section>
-<section id="general-requirements" class="level2">
-<h2 class="anchored" data-anchor-id="general-requirements">General Requirements</h2>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -2,12 +2,12 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Docker Workshop",
+    "title": "Docker Workshop 🐳",
     "section": "",
-    "text": "&gt;docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼\n\n/ Welcome to the Docker for Data Science \\\n\\ Workshop! 👋🏼                           /\n ----------------------------------------\n    \\\n     \\\n      \\\n                    ##        .\n              ## ## ##       ==\n           ## ## ## ##      ===\n       /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"___/ ===\n  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~\n       \\______ o          __/\n        \\    \\        __/\n          \\____\\______/",
+    "text": "&gt;docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼\n\n/ Welcome to the Docker for Data Science \\\n\\ Workshop! 👋🏼                           /\n ----------------------------------------\n    \\\n     \\\n      \\\n                    ##        .\n              ## ## ##       ==\n           ## ## ## ##      ===\n       /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"___/ ===\n  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~\n       \\______ o          __/\n        \\    \\        __/\n          \\____\\______/\nWelcome to the Docker for Data Science workshop! As its name implies, this workshop focuses on the foundations of Docker with data science applications. That includes the following topics: - Settings - Motivation - Workflow - The Dockerfile - Build - Run - Docker Compose",
     "crumbs": [
       "Home",
-      "Docker Workshop"
+      "Docker Workshop 🐳"
     ]
   },
   {
@@ -34,34 +34,34 @@
   {
     "objectID": "index.html#learning-objectives",
     "href": "index.html#learning-objectives",
-    "title": "Docker Workshop",
+    "title": "Docker Workshop 🐳",
     "section": "Learning Objectives",
-    "text": "Learning Objectives",
+    "text": "Learning Objectives\nThe main learning object is to motivate data scientists and other partitioners to use containers in their workflow. Docker has some learning curve, and the goal of this workshop is to reduce the entry barrier for new learners.\nBy the end of this tutorial, you will:\n\nUnderstand the general applications of Docker, and in particular, the ones for data science\nLearn about the advantages and disadvantages of using Docker\nAble to design, build, and run a container",
     "crumbs": [
       "Home",
-      "Docker Workshop"
+      "Docker Workshop 🐳"
     ]
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
-    "title": "Docker Workshop",
+    "title": "Docker Workshop 🐳",
     "section": "Schedule",
-    "text": "Schedule",
+    "text": "Schedule\nThe workshop will take place on Feb 5: 1:00 - 5:00 pm @ Student Union:\n\n1:00 - 1:30 Introduction to Docker\n1:30 - 2:00 General settings\n2:00 - 2:15 Workflow\n2:15 - 2:30 Break\n2:15 - 2:45 The Dockerfile\n2:45 - 3:15 Build\n3:15 - 3:45 Run\n3:45 - 4:15 Docker Compose\n4:15 - 5:00 General topics",
     "crumbs": [
       "Home",
-      "Docker Workshop"
+      "Docker Workshop 🐳"
     ]
   },
   {
     "objectID": "index.html#general-requirements",
     "href": "index.html#general-requirements",
-    "title": "Docker Workshop",
+    "title": "Docker Workshop 🐳",
     "section": "General Requirements",
     "text": "General Requirements",
     "crumbs": [
       "Home",
-      "Docker Workshop"
+      "Docker Workshop 🐳"
     ]
   }
 ]

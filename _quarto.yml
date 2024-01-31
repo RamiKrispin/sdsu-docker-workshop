@@ -22,7 +22,7 @@ website:
   sidebar:
     style: "docked"
     search: true
-    contents:
+    contents: 
       - index.qmd
       - 01-settings.qmd
       - 02-workflow.qmd
