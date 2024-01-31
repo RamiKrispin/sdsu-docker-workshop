@@ -1,0 +1,41 @@
+project:
+  type: website
+  execute-dir: project
+  output-dir: docs
+  render:
+    - index.qmd
+    - about.qmd
+    - settings.qmd
+    - workflow.qmd
+    - the_dockerfile.qmd
+    - build.qmd
+    - run.qmd
+    - docker_compose.qmd
+
+website:
+  title: "sdsu-docker-workshop"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - index.qmd
+      - settings.qmd
+      - workflow.qmd
+      - the_dockerfile.qmd
+      - build.qmd
+      - run.qmd
+      - docker_compose.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

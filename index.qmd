@@ -1,0 +1,33 @@
+---
+title: " Docker Workshop"
+subtitle: "SDSU Data Science Symposium 2024"
+author: "Rami Krispin"
+---
+
+
+``` sehll
+>docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼
+
+/ Welcome to the Docker for Data Science \
+\ Workshop! 👋🏼                           /
+ ----------------------------------------
+    \
+     \
+      \
+                    ##        .
+              ## ## ##       ==
+           ## ## ## ##      ===
+       /""""""""""""""""___/ ===
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+       \______ o          __/
+        \    \        __/
+          \____\______/
+```
+
+## Learning Objectives
+
+## Schedule
+
+
+## General Requirements
+

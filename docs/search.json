@@ -1,0 +1,67 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Docker Workshop",
+    "section": "",
+    "text": "&gt;docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼\n\n/ Welcome to the Docker for Data Science \\\n\\ Workshop! 👋🏼                           /\n ----------------------------------------\n    \\\n     \\\n      \\\n                    ##        .\n              ## ## ##       ==\n           ## ## ## ##      ===\n       /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"___/ ===\n  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~\n       \\______ o          __/\n        \\    \\        __/\n          \\____\\______/",
+    "crumbs": [
+      "Home",
+      "Docker Workshop"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "tests/test3.html",
+    "href": "tests/test3.html",
+    "title": "Test Quarto",
+    "section": "",
+    "text": "Loading libraries:\n\n\nCode\nimport pandas as pd\n\n\nUse the print command:\n\n\nCode\nprint(\"Hello World!\")\n\n\nHello World!"
+  },
+  {
+    "objectID": "tests/test2.html",
+    "href": "tests/test2.html",
+    "title": "sdsu-docker-workshop",
+    "section": "",
+    "text": "import pandas as pd\n\n\nprint(\"Hello World!\")\n\nHello World!"
+  },
+  {
+    "objectID": "index.html#learning-objectives",
+    "href": "index.html#learning-objectives",
+    "title": "Docker Workshop",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives",
+    "crumbs": [
+      "Home",
+      "Docker Workshop"
+    ]
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "Docker Workshop",
+    "section": "Schedule",
+    "text": "Schedule",
+    "crumbs": [
+      "Home",
+      "Docker Workshop"
+    ]
+  },
+  {
+    "objectID": "index.html#general-requirements",
+    "href": "index.html#general-requirements",
+    "title": "Docker Workshop",
+    "section": "General Requirements",
+    "text": "General Requirements",
+    "crumbs": [
+      "Home",
+      "Docker Workshop"
+    ]
+  }
+]
