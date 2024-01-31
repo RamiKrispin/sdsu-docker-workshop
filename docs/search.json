@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Docker Workshop 🐳",
     "section": "",
-    "text": "&gt;docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼\n\n/ Welcome to the Docker for Data Science \\\n\\ Workshop! 👋🏼                           /\n ----------------------------------------\n    \\\n     \\\n      \\\n                    ##        .\n              ## ## ##       ==\n           ## ## ## ##      ===\n       /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"___/ ===\n  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~\n       \\______ o          __/\n        \\    \\        __/\n          \\____\\______/\nWelcome to the Docker for Data Science workshop! As its name implies, this workshop focuses on the foundations of Docker with data science applications. That includes the following topics: - Settings - Motivation - Workflow - The Dockerfile - Build - Run - Docker Compose",
+    "text": "Welcome to the Docker for Data Science workshop! As its name implies, this workshop focuses on the foundations of Docker with data science applications. That includes the following topics:",
     "crumbs": [
       "Home",
       "Docker Workshop 🐳"

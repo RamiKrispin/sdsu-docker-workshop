@@ -5,26 +5,8 @@ author: "Rami Krispin"
 ---
 
 
-``` sehll
->docker run docker/whalesay cowsay Welcome to the Docker for Data Science Workshop! 👋🏼
-
-/ Welcome to the Docker for Data Science \
-\ Workshop! 👋🏼                           /
- ----------------------------------------
-    \
-     \
-      \
-                    ##        .
-              ## ## ##       ==
-           ## ## ## ##      ===
-       /""""""""""""""""___/ ===
-  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-       \______ o          __/
-        \    \        __/
-          \____\______/
-```
-
 Welcome to the Docker for Data Science workshop! As its name implies, this workshop focuses on the foundations of Docker with data science applications. That includes the following topics:
+
 - Settings
 - Motivation
 - Workflow
@@ -32,6 +14,15 @@ Welcome to the Docker for Data Science workshop! As its name implies, this works
 - Build
 - Run
 - Docker Compose
+
+
+<figure>
+ <img src="images/space-wheel.webp" width="100%" align="center"/></a>
+<figcaption> Figure 1 - A Wheel carries containers in space (created with Midjourney)</figcaption>
+</figure>
+
+<br>
+
 
 ## Learning Objectives
 
