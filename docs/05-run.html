@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -175,7 +209,13 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#docker-run" id="toc-docker-run" class="nav-link active" data-scroll-target="#docker-run">Docker run</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -199,8 +239,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>In the previous sections, we saw how to define the image requirements with the <code>Dockerfile</code> and build it with the <code>build</code> command. This section focuses on running Python inside a container using the <code>docker run</code> command.</p>
+<section id="docker-run" class="level3">
+<h3 class="anchored" data-anchor-id="docker-run">Docker run</h3>
+<p>The <code>docker run</code> or <code>run</code> command enables us to create and run a new container from an image. Typically, the <code>run</code> command is used to launch a dockerized application or server or to execute a code following the below syntax:</p>
+<pre class="shell"><code>docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</code></pre>
+<p>For example, we can use the <code>run</code> command with the official Python 3.10 image:</p>
+<pre class="shell"><code>docker run python:3.10 </code></pre>
+<p>Surprisingly (or not), nothing happened. To understand that better, we need to go back to the <code>Dockerfile</code>. Generally, images can be used to run: - Server - Application</p>
+<p>In both cases, we use the <code>Dockerfile</code> to set and enable launching them during the run time. In the case of a server, we use on the <code>Dockerfile</code> the <code>PORT</code> and <code>CMD</code> commands to set the server’s port on the image and launch the server, respectively. We then use the <code>run</code> command and add the <code>-p</code> (or <code>--publish list</code>) option to map the server’s port with a local port. Similarly, to launch an application, we use the <code>CMD</code> command on the <code>Dockerfile</code> to define the launch command during the run time and use the <code>--interactive</code> and <code>--tty</code> options to launch the container in interactive mode, which enables us to access the application.</p>
+<p>Let’s now go back to the <code>python:3.10</code> image and use the <code>inspect</code> command to check if the <code>CMD</code> command was defined:</p>
+<pre class="shell"><code>&gt; docker inspect python:3.10 | jq '.[] | .Config.Cmd'
+[
+  "python3"
+]</code></pre>
+<p><strong>Note:</strong> We used the <code>jq</code> library again to parse out from the JSON output the CMD metadata</p>
+<p>As you can see, the <code>CMD</code> on the <code>python:3.10</code> image is set to run the default Python launch command - <code>python3</code>, which launches Python during the run time. Let’s now add the <code>--interactive</code> and <code>--tty</code> options to run the container in an interactive mode:</p>
+<pre class="shell"><code> docker run --interactive --tty python:3.10 </code></pre>
+<p>This launches the default Python version on the image. We can then test it by using the <code>print</code> command to print <code>Hello World!</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Python <span class="fl">3.10.12</span> (main, Jun <span class="dv">14</span> <span class="dv">2023</span>, <span class="dv">18</span>:<span class="dv">40</span>:<span class="dv">54</span>) [GCC <span class="fl">12.2.0</span>] on linux</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Type <span class="st">"help"</span>, <span class="st">"copyright"</span>, <span class="st">"credits"</span> <span class="kw">or</span> <span class="st">"license"</span> <span class="cf">for</span> more information.</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Hello World<span class="op">!</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>OK, we have Python running inside a dockerized environment, so why should we not use it? Mainly due to the following reasons: - This is not a development environment, and it is harder (in my mind) to maintain and develop code from the terminal with respect to Python IDEs such as PyCharm or VScode. - By default, the <code>docker run</code> is an ephemeral process, and therefore, your code is lost when you shut down the container.</p>
+<p>While there are ways to overcome the above issues, it is still convoluted and not as efficient as using VScode. In the next section, we will see how to set and run Python code with VScode and the Dev Containers extension.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

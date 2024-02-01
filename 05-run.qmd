@@ -1,3 +1,57 @@
 ---
 title: "Docker Run"
 ---
+
+In the previous sections, we saw how to define the image requirements with the `Dockerfile` and build it with the `build` command. This section focuses on running Python inside a container using the `docker run` command.
+
+### Docker run
+
+The `docker run` or `run` command enables us to create and run a new container from an image. Typically, the `run` command is used to launch a dockerized application or server or to execute a code following the below syntax:
+
+``` shell
+docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+```
+
+For example, we can use the `run` command with the official Python 3.10 image:
+
+``` shell
+docker run python:3.10 
+```
+
+Surprisingly (or not), nothing happened. To understand that better, we need to go back to the `Dockerfile`. Generally, images can be used to run:
+- Server
+- Application
+
+In both cases, we use the `Dockerfile` to set and enable launching them during the run time. In the case of a server, we use on the `Dockerfile` the `PORT` and `CMD` commands to set the server's port on the image and launch the server, respectively. We then use the `run` command and add the `-p` (or `--publish list`) option to map the server's port with a local port. Similarly, to launch an application, we use the `CMD` command on the `Dockerfile` to define the launch command during the run time and use the `--interactive` and  `--tty` options to launch the container in interactive mode, which enables us to access the application.
+
+Let's now go back to the `python:3.10` image and use the `inspect` command to check if the `CMD` command was defined:
+
+``` shell
+> docker inspect python:3.10 | jq '.[] | .Config.Cmd'
+[
+  "python3"
+]
+```
+
+**Note:** We used the `jq` library again  to parse out from the JSON output the CMD metadata
+
+As you can see, the `CMD` on the `python:3.10` image is set to run the default Python launch command - `python3`, which launches Python during the run time. Let's now add the `--interactive` and  `--tty` options to run the container in an interactive mode:
+
+```shell
+ docker run --interactive --tty python:3.10 
+ ```
+This launches the default Python version on the image. We can then test it by using the `print` command to print `Hello World!`:
+
+```python
+Python 3.10.12 (main, Jun 14 2023, 18:40:54) [GCC 12.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print("Hello World!")
+Hello World!
+>>> 
+```
+
+OK, we have Python running inside a dockerized environment, so why should we not use it? Mainly due to the following reasons:
+- This is not a development environment, and it is harder (in my mind) to maintain and develop code from the terminal with respect to Python IDEs such as PyCharm or VScode. 
+- By default, the `docker run` is an ephemeral process, and therefore, your code is lost when you shut down the container.
+
+While there are ways to overcome the above issues, it is still convoluted and not as efficient as using VScode. In the next section, we will see how to set and run Python code with VScode and the Dev Containers extension.
