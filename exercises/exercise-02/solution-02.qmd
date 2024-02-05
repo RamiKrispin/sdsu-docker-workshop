@@ -1,0 +1,24 @@
+---
+title: "Setting a Development Environment"
+subtitle: "Solution"
+---
+
+## Task 1
+
+``` shell
+docker run --interactive --tty python:3.10
+```
+
+## Task 2
+
+``` shell
+docker build . -f Dockerfile.task2 --progress=plain -t rkrispin/docker-workshop:pyenv2
+docker run --interactive --tty rkrispin/docker-workshop:pyenv2
+```
+
+## Task 3
+
+``` shell
+docker build . -f Dockerfile.task3 --progress=plain -t rkrispin/docker-workshop:pyenv3
+docker run --interactive --tty rkrispin/docker-workshop:pyenv3
+```

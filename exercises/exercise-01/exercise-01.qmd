@@ -1,0 +1,73 @@
+---
+title: "The Dockerfile"
+subtitle: "Exercises"
+---
+
+Goal: Create a Dockerfile, build, and run an image 
+
+In this exercies, we will use the following images:
+
+- Ubuntu: `ubuntu:22.04`
+- Python: `python:3.10`
+- R: `r-base:4.3.1`
+
+
+Use the pull command to pull the images:
+``` shell
+docker pull ubuntu:22.04
+docker pull python:3.10
+docker pull r-base:4.3.1
+```
+
+## Task 1
+
+Create a Dockerfile that has the following functionality:
+
+- Import one of the above images
+- Create file named hello_world.R or hello_world.py 
+- Write to the file the print command that print `Hello World!`
+- Execute the file
+
+Build the image and try to run it.
+
+
+## Task 2
+
+Rerun the image from the previous task using interactive mode `--interactive --tty`. Could you fine the file you created?
+
+## Task 3 
+
+Repeat Task 1, this time use the CMD command to execute the script during the run time (as oppose to during the build time), build the image and run it.
+
+
+## Task 4
+
+Repeat Task 3, this time, instead of creating the hello_world file during the build time, prepare it on the local folder and use the COPY command to copy it to the root folder.
+
+
+## Task 5
+
+Repeat Task 4, this time create a new folder `my_files`, copy the `hello world` script to this folder and set the folder as the working directory using the `WORKDIR` command. 
+
+
+## Task 6
+
+- Login to your Docker Hub account from the CLI
+- Push the image you created on the prvious task to Ducker Hub
+- Make sure you use your user name in the image tag
+
+
+## Task 7 
+
+Pull an image that one of the workshop attendees created from Docker Hub on Task 6 and run it locally
+
+
+## Task 8 
+
+Review the available images and run a clean-up with the `system prune` command
+
+
+
+
+
+

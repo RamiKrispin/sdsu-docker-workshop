@@ -1,0 +1,5 @@
+FROM r-base:4.3.1
+
+RUN touch hello_world.R
+RUN echo "print('Hello World!')" > hello_world.R
+RUN Rscript -e "source('hello_world.R')"

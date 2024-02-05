@@ -1,0 +1,5 @@
+FROM ubuntu:22.04
+
+COPY hello_world.sh .
+
+CMD bash hello_world.sh

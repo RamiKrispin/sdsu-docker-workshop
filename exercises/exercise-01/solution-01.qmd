@@ -1,0 +1,99 @@
+---
+title: "The Dockerfile"
+subtitle: "Solution"
+---
+
+## Task 1
+
+``` shell
+docker build . -f Dockerfile.Sh-task1 --progress=plain -t rkrispin/docker-workshop:sh1
+docker build . -f Dockerfile.R-task1 --progress=plain -t rkrispin/docker-workshop:r1
+docker build . -f Dockerfile.Py-task1 --progress=plain -t rkrispin/docker-workshop:py1
+
+docker run rkrispin/docker-workshop:sh1
+docker run rkrispin/docker-workshop:r1
+docker run rkrispin/docker-workshop:py1
+```
+
+## Task 2
+
+``` shell
+docker run --interactive --tty rkrispin/docker-workshop:sh1
+docker run --interactive --tty rkrispin/docker-workshop:r1
+docker run --interactive --tty rkrispin/docker-workshop:py1
+```
+
+## Task 3
+
+```shell
+docker build . -f Dockerfile.Sh-task3 --progress=plain -t rkrispin/docker-workshop:sh3
+docker build . -f Dockerfile.R-task3 --progress=plain -t rkrispin/docker-workshop:r3
+docker build . -f Dockerfile.Py-task3 --progress=plain -t rkrispin/docker-workshop:py3
+
+docker run rkrispin/docker-workshop:sh3
+docker run rkrispin/docker-workshop:r3
+docker run rkrispin/docker-workshop:py3
+
+```
+
+## Task 4
+
+Python
+
+``` shell
+touch hello_world.py
+echo "print('Hello World!')" > hello_world.py
+
+docker build . -f Dockerfile.Py-task4 --progress=plain -t rkrispin/docker-workshop:py4
+
+docker run rkrispin/docker-workshop:py4
+```
+
+R 
+
+``` shell
+touch hello_world.R
+echo "print('Hello World!')" > hello_world.R
+
+docker build . -f Dockerfile.R-task4 --progress=plain -t rkrispin/docker-workshop:r4
+
+docker run rkrispin/docker-workshop:r4
+```
+
+Bash
+
+``` shell
+touch hello_world.sh
+echo "echo 'Hello World!'" > hello_world.sh
+
+docker build . -f Dockerfile.Sh-task4 --progress=plain -t rkrispin/docker-workshop:sh4
+
+docker run rkrispin/docker-workshop:sh4
+```
+
+
+## Task 5
+
+```shell
+docker build . -f Dockerfile.Sh-task5 --progress=plain -t rkrispin/docker-workshop:sh5
+docker build . -f Dockerfile.R-task5 --progress=plain -t rkrispin/docker-workshop:r5
+docker build . -f Dockerfile.Py-task5 --progress=plain -t rkrispin/docker-workshop:py5
+
+docker run rkrispin/docker-workshop:sh5
+docker run rkrispin/docker-workshop:r5
+docker run rkrispin/docker-workshop:py5
+
+```
+
+## Task 6
+
+```shell
+docker push rkrispin/docker-workshop:r5
+docker push rkrispin/docker-workshop:sh5
+docker push rkrispin/docker-workshop:py5
+```
+
+
+
+
+

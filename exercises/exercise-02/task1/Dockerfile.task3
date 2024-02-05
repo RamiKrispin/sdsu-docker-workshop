@@ -1,0 +1,22 @@
+FROM python:3.10
+
+ENV PYTHON_ENV=workshop_env
+
+RUN mkdir requirements
+
+COPY requirements.txt /requirements/
+
+RUN python3 -m venv /opt/$PYTHON_ENV  \
+    && export PATH=/opt/$PYTHON_ENV/bin:$PATH \
+    && echo "source /opt/$PYTHON_ENV/bin/activate" >> ~/.bashrc
+
+RUN pip3 install -r ./requirements/requirements.txt
+
+
+RUN apt-get update && \
+    apt-get install -y \
+    vim \
+    && apt update 
+
+
+CMD ["/bin/sh", "-c", "bash"]

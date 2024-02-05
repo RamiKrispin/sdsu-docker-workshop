@@ -1,0 +1,49 @@
+---
+title: "Setting a Development Environment"
+subtitle: "Exercises"
+---
+
+In this exercies, we will use the following images:
+
+- Ubuntu: `ubuntu:22.04`
+- Python: `python:3.10`
+- R: `r-base:4.3.1`
+
+
+Use the pull command to pull the images:
+``` shell
+docker pull ubuntu:22.04
+docker pull python:3.10
+docker pull r-base:4.3.1
+
+
+## Task 1
+
+Pull and run the Python image and try to import the pandas library:
+
+```python
+import pandas as pd
+```
+
+
+## Task 2
+
+Create a Dockerfile with `python:3.10` as your base image and:
+
+- Create a folder named requirements
+- Copy the requirements.txt file to the requirements folder
+- Use pip3 to install the the python libraries from the requirements.txt file:
+
+```shell
+RUN pip3 install -r ./requirements/requirements.txt
+```
+
+
+## Task 3
+
+Let's now repeat Task 2, this time:
+
+- Let's define environment variable named `PYTHON_ENV` and set it to workshop_env
+- Use Python venv to create a virtual environment and set its name as `PYTHON_ENV`
+- Install the python libraries to the venv using the requirements.txt file
+- Expose a bash terminal using the `CMD` command

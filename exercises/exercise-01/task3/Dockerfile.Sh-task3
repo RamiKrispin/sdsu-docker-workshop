@@ -1,0 +1,6 @@
+FROM ubuntu:22.04
+
+RUN touch hello_world.sh
+RUN echo "echo 'Hello World!'" > hello_world.sh
+
+CMD bash hello_world.sh

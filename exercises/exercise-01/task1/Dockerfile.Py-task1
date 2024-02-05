@@ -1,0 +1,5 @@
+FROM python:3.10
+
+RUN touch hello_world.py 
+RUN echo "print('Hello World')" > hello_world.py
+RUN python hello_world.py

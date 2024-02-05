@@ -1,0 +1,5 @@
+FROM python:3.10
+
+COPY hello_world.py  .
+
+CMD python hello_world.py

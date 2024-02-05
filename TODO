@@ -5,3 +5,9 @@
 Docker commands
 - Docker inspeact
 - Docker system prune
+
+Docker Run
+- basic run
+- file argument
+- tag argument
+- progress argument
