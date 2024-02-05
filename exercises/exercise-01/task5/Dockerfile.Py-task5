@@ -1,0 +1,9 @@
+FROM python:3.10
+
+RUN mkdir my_files
+
+WORKDIR /my_files
+
+COPY hello_world.py  .
+
+CMD python hello_world.py

@@ -1,0 +1,9 @@
+FROM ubuntu:22.04
+
+RUN mkdir my_files
+
+WORKDIR /my_files
+
+COPY hello_world.sh .
+
+CMD bash hello_world.sh
