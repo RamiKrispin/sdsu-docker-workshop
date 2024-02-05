@@ -1,0 +1,239 @@
+---
+title: "Core CLI Commands"
+---
+This section focuses on the command line (CLI) core commands. Typically, when working with Docker and containers, we will some flavour of Linux OS, such as Ubunto, Alpine, etc. Throughout this workshop, we will use Ubuntu, unless state otherwise. We will start by pulling the official Ubuntu image and launch a containier using the `run` command from the terminal:
+
+``` shell
+  docker pull ubuntu:22.04                
+22.04: Pulling from library/ubuntu
+b91d8878f844: Pull complete
+Digest: sha256:e9569c25505f33ff72e88b2990887c9dcf230f23259da296eb814fc2b41af999
+Status: Downloaded newer image for ubuntu:22.04
+docker.io/library/ubuntu:22.04
+```
+
+We use the `interactive` and `tty` arguments to ssh inside the container:
+
+```
+ docker run --interactive --tty ubuntu:22.04 
+```
+
+This will ssh into the container terminal:
+``` shell
+root@0e52c467700c:/#
+```
+## Basic CLI Commands
+
+The `ls` command list the files and directories in the current direcotry (or different directory when provided a path): 
+
+``` shell
+root@0e52c467700c:/# ls
+bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+```
+
+By default, the `ls` command won't display hidden files (e.g., starts with `.`). To display all files use the `-a` argument:
+
+``` shell
+root@0e52c467700c:/# ls -a
+.  ..  .dockerenv  bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+```
+Simlarly, the `-l` argument will display the output in a long listing format:
+
+```shell
+root@0e52c467700c:/# ls -l
+total 48
+lrwxrwxrwx   1 root root    7 Jan 25 14:04 bin -> usr/bin
+drwxr-xr-x   2 root root 4096 Apr 18  2022 boot
+drwxr-xr-x   5 root root  360 Feb  4 06:39 dev
+drwxr-xr-x   1 root root 4096 Feb  4 06:39 etc
+drwxr-xr-x   2 root root 4096 Apr 18  2022 home
+lrwxrwxrwx   1 root root    7 Jan 25 14:04 lib -> usr/lib
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 media
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 mnt
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 opt
+dr-xr-xr-x 286 root root    0 Feb  4 06:39 proc
+drwx------   2 root root 4096 Jan 25 14:09 root
+drwxr-xr-x   5 root root 4096 Jan 25 14:09 run
+lrwxrwxrwx   1 root root    8 Jan 25 14:04 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 srv
+dr-xr-xr-x  12 root root    0 Feb  4 06:39 sys
+drwxrwxrwt   2 root root 4096 Jan 25 14:09 tmp
+drwxr-xr-x  11 root root 4096 Jan 25 14:04 usr
+drwxr-xr-x  11 root root 4096 Jan 25 14:09 var
+```
+
+The `cd` command enables to change the shell working directory:
+
+```shell
+root@0e52c467700c:/# cd bin
+root@0e52c467700c:/bin#
+```
+
+And the `pwd` returns the current working directory:
+
+```shell
+root@0e52c467700c:/bin# pwd
+/bin
+```
+
+Last but not least, the `..` reference the directory above the current path:
+```shell
+cd ..
+root@0e52c467700c:/#
+```
+
+## Working with files and directories
+
+The `mkdir` (i.e., make directory) command enables to create a directory:
+
+```shell
+root@0e52c467700c:/# mkdir test
+root@0e52c467700c:/# cd test/
+root@0e52c467700c:/test#
+```
+
+There are many ways to create and view files via the CLI. In the following example, we will create a bash script named `hellow_world.sh` that print `Hello World!`. We will use the `touch` command to create an empty bash script file:
+```shell
+root@0e52c467700c:/test# touch hello_world.sh
+```
+
+You can use the `ls` command to confirm that the file was created:
+```shell
+root@0e52c467700c:/test# ls
+hello_world.sh
+```
+
+In the CLI the `echo` command is used to print text, and can be use to write text into a file with the `>` symbol. As we want the bash script to print `Hello World!` we will write to the file `echo "Hello World!"`:
+
+
+``` shell
+echo echo "Hello World!" > hello_world.sh
+```
+
+To print the content of the file, we will use the `cat` command:
+
+``` shell
+root@0e52c467700c:/test# cat hello_world.sh
+echo Hello World!
+```
+
+We can now execute the file using the `bash` command:
+
+```shell
+root@0e52c467700c:/test# bash hello_world.sh
+Hello World!
+```
+
+**Note:** The `>` symbol is used to add new text to a file. If the file has already any text, it will overwrite the previous text with the new text. To append new text use the `>>` symbol:
+
+```shell
+root@0e52c467700c:/test# echo echo "Hello World 2!" >> hello_world.sh
+root@0e52c467700c:/test# cat hello_world.sh
+echo Hello World!
+echo Hello World 2!
+root@0e52c467700c:/test# bash hello_world.sh
+Hello World!
+Hello World 2!
+```
+
+The `rm` command (i.e., remove), enables to delete or remove files and folders. For example, let's now delete the bash script we created above - `hello_world.sh`:
+
+``` shell
+root@0e52c467700c:/test# rm hello_world.sh
+```
+
+You can use the `ls` command to confirm that the file was deleted:
+
+```shell
+root@0e52c467700c:/test# ls
+root@0e52c467700c:/test#
+```
+Simlarly, you can use the `rm` command to delete folders. Let's remove the test folder we created:
+
+```shell
+rm -rf test/
+```
+
+The `r` arguments used to remove directories and their contents recursively, and the `f` argument to ignore nonexistent files and arguments.
+
+## Variables
+
+Another common use case of command line functionality is the use of variables and environment variables. Assigning values to variables from the CLI is strightforward and fairly similar to other programming languages such as R and Python using the `=` symbol. For example, let's assing the variable `x` the value `10`:
+
+```shell
+root@0e52c467700c:/# x=10
+```
+
+**Note:** Unlike R or Python, the CLI is sensetive for spaces when assinging values to variables. Using spaces would ended up with error as it 
+
+```shell
+root@0e52c467700c:/# x = 10
+bash: x: command not found
+```
+
+Similarly, typing the variable name would ended up with an error, as the shell interparter is expecting for a command. For example, this would results with an error:
+
+```shell
+root@0e52c467700c:/# x
+bash: x: command not found
+```
+To reffer to variables on the CLI, attach the `$` sign before the variable name. For example, we will use the `echo` command to print the variable `x` we created above:
+
+```shell
+root@0e52c467700c:/# echo $x
+10
+```
+
+### Assign Variable to Bash Script
+
+Often, when building containers, we will use bash scripts as helper files. For example, the following bash script is used to install Quarto during the build time of the image with the use of variables. It has the following functionality:
+- Receive input from the user with the Quarto version and assing the value to a variable name `QUARTO_VERSION`
+- Use the `uname` command to evluate the CPU type and assign it to a variable name `CPU`
+- Use the `wget` function to pull the relevent Quarto build and install it with the `dpkg` function
+
+
+`install_quarto.sh`
+``` bash
+#!/usr/bin/env bash
+QUARTO_VERSION=$1 
+
+echo "Installing Quarto version $QUARTO_VERSION"
+
+# Identify the CPU type (M1 vs Intel)
+if [[ $(uname -m) ==  "aarch64" ]] ; then
+  CPU="arm64"
+elif [[ $(uname -m) ==  "arm64" ]] ; then
+  CPU="arm64"
+else
+  CPU="amd64"
+fi
+
+TEMP_QUARTO="$(mktemp)" && \
+    wget -q  -O "$TEMP_QUARTO" https://github.com/quarto-dev/quarto-cli/releases/download/v$QUARTO_VERSION/quarto-${QUARTO_VERSION}-linux-${CPU}.deb && \
+    dpkg -i "$TEMP_QUARTO" && \
+    rm -f "$TEMP_QUARTO"
+```
+
+Here is how you would execute the script:
+
+```shell
+bash install_quarto.sh "1.3.450"
+```
+
+Where bash will index the variables by their order of assignment starting with 1. In the above case, as we have a single variable it will be index as 1 and referenced in the script as `$1`
+
+
+
+### Setting Environment Variables
+
+The use of environment variables in the Docker development workflow is a very useful tool. It enables you to unify your settings with having multiple users. In addition, it enables you to parameterize your settings and avoid hard coding some of the functionality of your image, such as the R or Python versions. We use the `export` command on the CLI to set an environment variable. For example, let's reset `x` as an enviroment variable and assign the value `10` from the CLI:
+
+``` shell
+root@0e52c467700c:/# export x=10
+root@0e52c467700c:/# echo $x
+10
+```
+
+
+
+On Linux distro, you typically use the bash `.bashrc` file to add your setting and set environment variables. For example, if we want to set the `x` variabe we created before as environment variable we would add the 

@@ -7,6 +7,7 @@ project:
     - about.qmd
     - 01-settings.qmd
     - 02-workflow.qmd
+    - cli-commands.qmd
     - 03-the_dockerfile.qmd
     - 04-build.qmd
     - 05-run.qmd
@@ -26,6 +27,7 @@ website:
       - index.qmd
       - 01-settings.qmd
       - 02-workflow.qmd
+      - cli-commands.qmd
       - 03-the_dockerfile.qmd
       - 04-build.qmd
       - 05-run.qmd

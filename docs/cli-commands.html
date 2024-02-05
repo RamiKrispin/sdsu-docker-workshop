@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>sdsu-docker-workshop - Workflow</title>
+<title>sdsu-docker-workshop - Core CLI Commands</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -107,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-workflow.html">Workflow</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cli-commands.html">Core CLI Commands</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -141,13 +175,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-workflow.html" class="sidebar-item-text sidebar-link active">
+  <a href="./02-workflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Workflow</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cli-commands.html" class="sidebar-item-text sidebar-link">
+  <a href="./cli-commands.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Core CLI Commands</span></a>
   </div>
 </li>
@@ -185,8 +219,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-docker" id="toc-what-is-docker" class="nav-link active" data-scroll-target="#what-is-docker">What is Docker?</a></li>
-  <li><a href="#docker-for-data-science" id="toc-docker-for-data-science" class="nav-link" data-scroll-target="#docker-for-data-science">Docker for Data Science</a></li>
+  <li><a href="#basic-cli-commands" id="toc-basic-cli-commands" class="nav-link active" data-scroll-target="#basic-cli-commands">Basic CLI Commands</a></li>
+  <li><a href="#working-with-files-and-directories" id="toc-working-with-files-and-directories" class="nav-link" data-scroll-target="#working-with-files-and-directories">Working with files and directories</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a>
+  <ul class="collapse">
+  <li><a href="#assign-variable-to-bash-script" id="toc-assign-variable-to-bash-script" class="nav-link" data-scroll-target="#assign-variable-to-bash-script">Assign Variable to Bash Script</a></li>
+  <li><a href="#setting-environment-variables" id="toc-setting-environment-variables" class="nav-link" data-scroll-target="#setting-environment-variables">Setting Environment Variables</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -195,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Workflow</h1>
+<h1 class="title">Core CLI Commands</h1>
 </div>
 
 
@@ -212,54 +251,141 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In my data science career, one major technical milestone (after learning how to code and adopt Git) was learning Docker and starting to use it. It opened a new world of opportunities, from automating processes to deploying data science work in production. This section defines what Docker is and the data science applications and use cases.</p>
-<section id="what-is-docker" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-docker">What is Docker?</h2>
-<p>Docker is a CI/CD tool that enables seamless code deployment from development to production environments. By creating OS-level virtualization, it can package an application and its dependencies in a virtual container and ship it between different environments. The main advantages of using Docker within your development environment are:</p>
-<ul>
-<li><strong>Reproducibility -</strong> Docker enables you to seamlessly package your code and its dependencies into a single container and execute, test, share, and deploy it with a high level of consistency</li>
-<li><strong>Collaboration -</strong> Docker solves the dependencies madness when a team of developers works together on a specific project. Having a unified environment saves a ton of time during the development step. For example, if one developer gets some error, it is easy for other developers to reproduce the error and help debug it</li>
-<li><strong>Deployment -</strong> Docker simplifies the code shipment from the development environment to the production</li>
-</ul>
+<p>This section focuses on the command line (CLI) core commands. Typically, when working with Docker and containers, we will some flavour of Linux OS, such as Ubunto, Alpine, etc. Throughout this workshop, we will use Ubuntu, unless state otherwise. We will start by pulling the official Ubuntu image and launch a containier using the <code>run</code> command from the terminal:</p>
+<pre class="shell"><code>  docker pull ubuntu:22.04                
+22.04: Pulling from library/ubuntu
+b91d8878f844: Pull complete
+Digest: sha256:e9569c25505f33ff72e88b2990887c9dcf230f23259da296eb814fc2b41af999
+Status: Downloaded newer image for ubuntu:22.04
+docker.io/library/ubuntu:22.04</code></pre>
+<p>We use the <code>interactive</code> and <code>tty</code> arguments to ssh inside the container:</p>
+<pre><code> docker run --interactive --tty ubuntu:22.04 </code></pre>
+<p>This will ssh into the container terminal:</p>
+<pre class="shell"><code>root@0e52c467700c:/#</code></pre>
+<section id="basic-cli-commands" class="level2">
+<h2 class="anchored" data-anchor-id="basic-cli-commands">Basic CLI Commands</h2>
+<p>The <code>ls</code> command list the files and directories in the current direcotry (or different directory when provided a path):</p>
+<pre class="shell"><code>root@0e52c467700c:/# ls
+bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre>
+<p>By default, the <code>ls</code> command won’t display hidden files (e.g., starts with <code>.</code>). To display all files use the <code>-a</code> argument:</p>
+<pre class="shell"><code>root@0e52c467700c:/# ls -a
+.  ..  .dockerenv  bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre>
+<p>Simlarly, the <code>-l</code> argument will display the output in a long listing format:</p>
+<pre class="shell"><code>root@0e52c467700c:/# ls -l
+total 48
+lrwxrwxrwx   1 root root    7 Jan 25 14:04 bin -&gt; usr/bin
+drwxr-xr-x   2 root root 4096 Apr 18  2022 boot
+drwxr-xr-x   5 root root  360 Feb  4 06:39 dev
+drwxr-xr-x   1 root root 4096 Feb  4 06:39 etc
+drwxr-xr-x   2 root root 4096 Apr 18  2022 home
+lrwxrwxrwx   1 root root    7 Jan 25 14:04 lib -&gt; usr/lib
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 media
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 mnt
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 opt
+dr-xr-xr-x 286 root root    0 Feb  4 06:39 proc
+drwx------   2 root root 4096 Jan 25 14:09 root
+drwxr-xr-x   5 root root 4096 Jan 25 14:09 run
+lrwxrwxrwx   1 root root    8 Jan 25 14:04 sbin -&gt; usr/sbin
+drwxr-xr-x   2 root root 4096 Jan 25 14:04 srv
+dr-xr-xr-x  12 root root    0 Feb  4 06:39 sys
+drwxrwxrwt   2 root root 4096 Jan 25 14:09 tmp
+drwxr-xr-x  11 root root 4096 Jan 25 14:04 usr
+drwxr-xr-x  11 root root 4096 Jan 25 14:09 var</code></pre>
+<p>The <code>cd</code> command enables to change the shell working directory:</p>
+<pre class="shell"><code>root@0e52c467700c:/# cd bin
+root@0e52c467700c:/bin#</code></pre>
+<p>And the <code>pwd</code> returns the current working directory:</p>
+<pre class="shell"><code>root@0e52c467700c:/bin# pwd
+/bin</code></pre>
+<p>Last but not least, the <code>..</code> reference the directory above the current path:</p>
+<pre class="shell"><code>cd ..
+root@0e52c467700c:/#</code></pre>
 </section>
-<section id="docker-for-data-science" class="level2">
-<h2 class="anchored" data-anchor-id="docker-for-data-science">Docker for Data Science</h2>
-<p>Docker was built to solve a common DevOps problem - the lack of reproducibility when shifting code between different environments (e.g., dev to prod). <strong>Reproducibility</strong> is not limited to DevOps, and it plays a critical role in the field of data science. We can define reproducibility as the ability to generate the <strong>exact outcome</strong> when running the same code <strong>regardless of the user or machine</strong> on which the code is running.</p>
-<p>The first time I heard the term reproducibility was during my bachelor’s degree, where I learned that reproducibility starts and ends by setting a <strong>seed</strong> number to lock down random numbers. My favorite seed number is 12345. When I started to work as a data scientist, I realized that reproducibility goes beyond setting a seed number. Here are the main elements that can impact code reproducibility:</p>
-<ul>
-<li><strong>Version control —</strong> First and foremost, reproducing the same results starts with the ability to track changes in your code Randomization — Controlling the random generation of numbers by setting the seed number</li>
-<li><strong>Software version —</strong> The versions of your Python or R (or any other programming language) and its dependencies (e.g., libraries) impact the outcome of your code. For example, code that was built with pandas v1.0 may not run on v2.0 due to deprecation of functions</li>
-<li><strong>Operating System (OS) —</strong> Most programming languages, particularly R and Python, use different compilers (e.g., C, C++, etc.) and other built-in OS components. The type of OS and its version could impact the outcome of your code</li>
-<li><strong>Hardware —</strong> Last but not, the type of hardware (or infrastructure) could impact your results (ARM/Intel/Apple processor, etc)</li>
-</ul>
-<p>In a regular data science workflow, reproducibility is dependent on several factors. One of the most basic and trivial elements of reproducibility is <strong>code versioning</strong>. Using unversioned code makes it impossible to track changes in your code or verify that the same code runs on different environments.</p>
-<p>Another critical factor is <strong>package versioning</strong>. Over time, packages and their dependencies tend to change and evolve, get new features, bug fixes, replace and deprecate old functions. In some cases, running your code using a specific package version may not work or yield the same results as older or newer versions of the package. For example, code written with Pandas 1.x may not work with Pandas 2.x, and vice versa.</p>
-<p>Similarly, <strong>programming languages</strong> tend to change over time, and using code built with older versions may not work or be supported with recent ones. Moreover, different operating systems use different software architectures or run different types of compilers (c, c++, etc.) on the backend. This difference may impact the reproducibility of your code.</p>
-<p>Lastly, the type of <strong>CPU architecture</strong> (ARM, Intel, Apple Silocon, etc.) may impact the underlying software. Some packages or software may require a separate build or may not be supported, which can ultimately affect the reproducibility of your code.</p>
-<p>Below is Figure 1, which illustrates the factors affecting code reproducibility when transferring between different environments.</p>
-<p><br></p>
-<figure class="figure">
-<img src="images/reproducibility without Docker.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 1 - Shifting code between environments, what could go wrong?
-</figcaption>
-</figure>
-<p><br></p>
-<p>Git provides a solution for versioning and monitoring code, ensuring that it can be reproduced correctly regardless of the user or machine it runs on, as long as it is used properly. Docker and similar solutions address the problem of environment mismatches by creating an isolated environment within a container that can be shipped along with the code to any remote machine, such as a desktop, laptop or server, allowing for seamless reproduction of the process.</p>
-<p>While developing software on different hardware architectures, such as Apple Silicon and Intel-based machines, there may be potential differences in the environment. Docker can partially address this issue by creating a dedicated image for each CPU architecture. However, this approach can be time-consuming and expensive since additional tests are required to ensure that all containers have the exact same characteristics.</p>
-<p>Figure 2 demonstrates a general workflow with Docker and Git. We use Git and Github/Gitlab/Bitbucket (or any similar service) to code version control. Docker is used to set up a containerized environment, which will be used for code development and testing. We then shift our code with the container to any remote environment that supports containers (i.e., Github Actions, AWS, GCP, etc.).</p>
-<p><br></p>
-<figure class="figure">
-<img src="images/reproducibility with Docker.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 2 - Shifting code between environments with version control and containers
-</figcaption>
-</figure>
-<p><br></p>
-<p>While this workflow provides a high level of reproducibility, it does not cover reproducibility issues you may encounter due to different hardware settings. There are different methods to address this issue, such as building a dedicated environment for each hardware architecture.</p>
-<p><strong>Note:</strong> Using a virtual environment is not an alternative to Docker. It actually works well together. While VE is not in the scope of this tutorial, you can read more about the differences between VE and Docker in the following <a href="https://medium.com/@rami.krispin/running-python-r-with-docker-vs-virtual-environment-4a62ed36900f">article</a>.</p>
+<section id="working-with-files-and-directories" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-files-and-directories">Working with files and directories</h2>
+<p>The <code>mkdir</code> (i.e., make directory) command enables to create a directory:</p>
+<pre class="shell"><code>root@0e52c467700c:/# mkdir test
+root@0e52c467700c:/# cd test/
+root@0e52c467700c:/test#</code></pre>
+<p>There are many ways to create and view files via the CLI. In the following example, we will create a bash script named <code>hellow_world.sh</code> that print <code>Hello World!</code>. We will use the <code>touch</code> command to create an empty bash script file:</p>
+<pre class="shell"><code>root@0e52c467700c:/test# touch hello_world.sh</code></pre>
+<p>You can use the <code>ls</code> command to confirm that the file was created:</p>
+<pre class="shell"><code>root@0e52c467700c:/test# ls
+hello_world.sh</code></pre>
+<p>In the CLI the <code>echo</code> command is used to print text, and can be use to write text into a file with the <code>&gt;</code> symbol. As we want the bash script to print <code>Hello World!</code> we will write to the file <code>echo "Hello World!"</code>:</p>
+<pre class="shell"><code>echo echo "Hello World!" &gt; hello_world.sh</code></pre>
+<p>To print the content of the file, we will use the <code>cat</code> command:</p>
+<pre class="shell"><code>root@0e52c467700c:/test# cat hello_world.sh
+echo Hello World!</code></pre>
+<p>We can now execute the file using the <code>bash</code> command:</p>
+<pre class="shell"><code>root@0e52c467700c:/test# bash hello_world.sh
+Hello World!</code></pre>
+<p><strong>Note:</strong> The <code>&gt;</code> symbol is used to add new text to a file. If the file has already any text, it will overwrite the previous text with the new text. To append new text use the <code>&gt;&gt;</code> symbol:</p>
+<pre class="shell"><code>root@0e52c467700c:/test# echo echo "Hello World 2!" &gt;&gt; hello_world.sh
+root@0e52c467700c:/test# cat hello_world.sh
+echo Hello World!
+echo Hello World 2!
+root@0e52c467700c:/test# bash hello_world.sh
+Hello World!
+Hello World 2!</code></pre>
+<p>The <code>rm</code> command (i.e., remove), enables to delete or remove files and folders. For example, let’s now delete the bash script we created above - <code>hello_world.sh</code>:</p>
+<pre class="shell"><code>root@0e52c467700c:/test# rm hello_world.sh</code></pre>
+<p>You can use the <code>ls</code> command to confirm that the file was deleted:</p>
+<pre class="shell"><code>root@0e52c467700c:/test# ls
+root@0e52c467700c:/test#</code></pre>
+<p>Simlarly, you can use the <code>rm</code> command to delete folders. Let’s remove the test folder we created:</p>
+<pre class="shell"><code>rm -rf test/</code></pre>
+<p>The <code>r</code> arguments used to remove directories and their contents recursively, and the <code>f</code> argument to ignore nonexistent files and arguments.</p>
+</section>
+<section id="variables" class="level2">
+<h2 class="anchored" data-anchor-id="variables">Variables</h2>
+<p>Another common use case of command line functionality is the use of variables and environment variables. Assigning values to variables from the CLI is strightforward and fairly similar to other programming languages such as R and Python using the <code>=</code> symbol. For example, let’s assing the variable <code>x</code> the value <code>10</code>:</p>
+<pre class="shell"><code>root@0e52c467700c:/# x=10</code></pre>
+<p><strong>Note:</strong> Unlike R or Python, the CLI is sensetive for spaces when assinging values to variables. Using spaces would ended up with error as it</p>
+<pre class="shell"><code>root@0e52c467700c:/# x = 10
+bash: x: command not found</code></pre>
+<p>Similarly, typing the variable name would ended up with an error, as the shell interparter is expecting for a command. For example, this would results with an error:</p>
+<pre class="shell"><code>root@0e52c467700c:/# x
+bash: x: command not found</code></pre>
+<p>To reffer to variables on the CLI, attach the <code>$</code> sign before the variable name. For example, we will use the <code>echo</code> command to print the variable <code>x</code> we created above:</p>
+<pre class="shell"><code>root@0e52c467700c:/# echo $x
+10</code></pre>
+<section id="assign-variable-to-bash-script" class="level3">
+<h3 class="anchored" data-anchor-id="assign-variable-to-bash-script">Assign Variable to Bash Script</h3>
+<p>Often, when building containers, we will use bash scripts as helper files. For example, the following bash script is used to install Quarto during the build time of the image with the use of variables. It has the following functionality: - Receive input from the user with the Quarto version and assing the value to a variable name <code>QUARTO_VERSION</code> - Use the <code>uname</code> command to evluate the CPU type and assign it to a variable name <code>CPU</code> - Use the <code>wget</code> function to pull the relevent Quarto build and install it with the <code>dpkg</code> function</p>
+<p><code>install_quarto.sh</code></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_VERSION</span><span class="op">=</span><span class="va">$1</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Installing Quarto version </span><span class="va">$QUARTO_VERSION</span><span class="st">"</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the CPU type (M1 vs Intel)</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span> <span class="ot">==</span>  <span class="st">"aarch64"</span> <span class="kw">]]</span> <span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">CPU</span><span class="op">=</span><span class="st">"arm64"</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="kw">[[</span> <span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span> <span class="ot">==</span>  <span class="st">"arm64"</span> <span class="kw">]]</span> <span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">CPU</span><span class="op">=</span><span class="st">"arm64"</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">CPU</span><span class="op">=</span><span class="st">"amd64"</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="va">TEMP_QUARTO</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="fu">mktemp</span><span class="va">)</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> <span class="at">-q</span>  <span class="at">-O</span> <span class="st">"</span><span class="va">$TEMP_QUARTO</span><span class="st">"</span> https://github.com/quarto-dev/quarto-cli/releases/download/v<span class="va">$QUARTO_VERSION</span>/quarto-<span class="va">${QUARTO_VERSION}</span>-linux-<span class="va">${CPU}</span>.deb <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">dpkg</span> <span class="at">-i</span> <span class="st">"</span><span class="va">$TEMP_QUARTO</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="at">-f</span> <span class="st">"</span><span class="va">$TEMP_QUARTO</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is how you would execute the script:</p>
+<pre class="shell"><code>bash install_quarto.sh "1.3.450"</code></pre>
+<p>Where bash will index the variables by their order of assignment starting with 1. In the above case, as we have a single variable it will be index as 1 and referenced in the script as <code>$1</code></p>
+</section>
+<section id="setting-environment-variables" class="level3">
+<h3 class="anchored" data-anchor-id="setting-environment-variables">Setting Environment Variables</h3>
+<p>The use of environment variables in the Docker development workflow is a very useful tool. It enables you to unify your settings with having multiple users. In addition, it enables you to parameterize your settings and avoid hard coding some of the functionality of your image, such as the R or Python versions. We use the <code>export</code> command on the CLI to set an environment variable. For example, let’s reset <code>x</code> as an enviroment variable and assign the value <code>10</code> from the CLI:</p>
+<pre class="shell"><code>root@0e52c467700c:/# export x=10
+root@0e52c467700c:/# echo $x
+10</code></pre>
+<p>On Linux distro, you typically use the bash <code>.bashrc</code> file to add your setting and set environment variables. For example, if we want to set the <code>x</code> variabe we created before as environment variable we would add the</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

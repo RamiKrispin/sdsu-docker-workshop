@@ -140,5 +140,82 @@
       "Home",
       "Docker Run"
     ]
+  },
+  {
+    "objectID": "02-workflow.html",
+    "href": "02-workflow.html",
+    "title": "Workflow",
+    "section": "",
+    "text": "In my data science career, one major technical milestone (after learning how to code and adopt Git) was learning Docker and starting to use it. It opened a new world of opportunities, from automating processes to deploying data science work in production. This section defines what Docker is and the data science applications and use cases.",
+    "crumbs": [
+      "Home",
+      "Workflow"
+    ]
+  },
+  {
+    "objectID": "02-workflow.html#what-is-docker",
+    "href": "02-workflow.html#what-is-docker",
+    "title": "Workflow",
+    "section": "What is Docker?",
+    "text": "What is Docker?\nDocker is a CI/CD tool that enables seamless code deployment from development to production environments. By creating OS-level virtualization, it can package an application and its dependencies in a virtual container and ship it between different environments. The main advantages of using Docker within your development environment are:\n\nReproducibility - Docker enables you to seamlessly package your code and its dependencies into a single container and execute, test, share, and deploy it with a high level of consistency\nCollaboration - Docker solves the dependencies madness when a team of developers works together on a specific project. Having a unified environment saves a ton of time during the development step. For example, if one developer gets some error, it is easy for other developers to reproduce the error and help debug it\nDeployment - Docker simplifies the code shipment from the development environment to the production",
+    "crumbs": [
+      "Home",
+      "Workflow"
+    ]
+  },
+  {
+    "objectID": "02-workflow.html#docker-for-data-science",
+    "href": "02-workflow.html#docker-for-data-science",
+    "title": "Workflow",
+    "section": "Docker for Data Science",
+    "text": "Docker for Data Science\nDocker was built to solve a common DevOps problem - the lack of reproducibility when shifting code between different environments (e.g., dev to prod). Reproducibility is not limited to DevOps, and it plays a critical role in the field of data science. We can define reproducibility as the ability to generate the exact outcome when running the same code regardless of the user or machine on which the code is running.\nThe first time I heard the term reproducibility was during my bachelor’s degree, where I learned that reproducibility starts and ends by setting a seed number to lock down random numbers. My favorite seed number is 12345. When I started to work as a data scientist, I realized that reproducibility goes beyond setting a seed number. Here are the main elements that can impact code reproducibility:\n\nVersion control — First and foremost, reproducing the same results starts with the ability to track changes in your code Randomization — Controlling the random generation of numbers by setting the seed number\nSoftware version — The versions of your Python or R (or any other programming language) and its dependencies (e.g., libraries) impact the outcome of your code. For example, code that was built with pandas v1.0 may not run on v2.0 due to deprecation of functions\nOperating System (OS) — Most programming languages, particularly R and Python, use different compilers (e.g., C, C++, etc.) and other built-in OS components. The type of OS and its version could impact the outcome of your code\nHardware — Last but not, the type of hardware (or infrastructure) could impact your results (ARM/Intel/Apple processor, etc)\n\nIn a regular data science workflow, reproducibility is dependent on several factors. One of the most basic and trivial elements of reproducibility is code versioning. Using unversioned code makes it impossible to track changes in your code or verify that the same code runs on different environments.\nAnother critical factor is package versioning. Over time, packages and their dependencies tend to change and evolve, get new features, bug fixes, replace and deprecate old functions. In some cases, running your code using a specific package version may not work or yield the same results as older or newer versions of the package. For example, code written with Pandas 1.x may not work with Pandas 2.x, and vice versa.\nSimilarly, programming languages tend to change over time, and using code built with older versions may not work or be supported with recent ones. Moreover, different operating systems use different software architectures or run different types of compilers (c, c++, etc.) on the backend. This difference may impact the reproducibility of your code.\nLastly, the type of CPU architecture (ARM, Intel, Apple Silocon, etc.) may impact the underlying software. Some packages or software may require a separate build or may not be supported, which can ultimately affect the reproducibility of your code.\nBelow is Figure 1, which illustrates the factors affecting code reproducibility when transferring between different environments.\n\n\n\n\nFigure 1 - Shifting code between environments, what could go wrong?\n\n\n\nGit provides a solution for versioning and monitoring code, ensuring that it can be reproduced correctly regardless of the user or machine it runs on, as long as it is used properly. Docker and similar solutions address the problem of environment mismatches by creating an isolated environment within a container that can be shipped along with the code to any remote machine, such as a desktop, laptop or server, allowing for seamless reproduction of the process.\nWhile developing software on different hardware architectures, such as Apple Silicon and Intel-based machines, there may be potential differences in the environment. Docker can partially address this issue by creating a dedicated image for each CPU architecture. However, this approach can be time-consuming and expensive since additional tests are required to ensure that all containers have the exact same characteristics.\nFigure 2 demonstrates a general workflow with Docker and Git. We use Git and Github/Gitlab/Bitbucket (or any similar service) to code version control. Docker is used to set up a containerized environment, which will be used for code development and testing. We then shift our code with the container to any remote environment that supports containers (i.e., Github Actions, AWS, GCP, etc.).\n\n\n\n\nFigure 2 - Shifting code between environments with version control and containers\n\n\n\nWhile this workflow provides a high level of reproducibility, it does not cover reproducibility issues you may encounter due to different hardware settings. There are different methods to address this issue, such as building a dedicated environment for each hardware architecture.\nNote: Using a virtual environment is not an alternative to Docker. It actually works well together. While VE is not in the scope of this tutorial, you can read more about the differences between VE and Docker in the following article.",
+    "crumbs": [
+      "Home",
+      "Workflow"
+    ]
+  },
+  {
+    "objectID": "cli-commands.html",
+    "href": "cli-commands.html",
+    "title": "Core CLI Commands",
+    "section": "",
+    "text": "This section focuses on the command line (CLI) core commands. Typically, when working with Docker and containers, we will some flavour of Linux OS, such as Ubunto, Alpine, etc. Throughout this workshop, we will use Ubuntu, unless state otherwise. We will start by pulling the official Ubuntu image and launch a containier using the run command from the terminal:\nWe use the interactive and tty arguments to ssh inside the container:\nThis will ssh into the container terminal:",
+    "crumbs": [
+      "Home",
+      "Core CLI Commands"
+    ]
+  },
+  {
+    "objectID": "cli-commands.html#basic-cli-commands",
+    "href": "cli-commands.html#basic-cli-commands",
+    "title": "Core CLI Commands",
+    "section": "Basic CLI Commands",
+    "text": "Basic CLI Commands\nThe ls command list the files and directories in the current direcotry (or different directory when provided a path):\nroot@0e52c467700c:/# ls\nbin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var\nBy default, the ls command won’t display hidden files (e.g., starts with .). To display all files use the -a argument:\nroot@0e52c467700c:/# ls -a\n.  ..  .dockerenv  bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var\nSimlarly, the -l argument will display the output in a long listing format:\nroot@0e52c467700c:/# ls -l\ntotal 48\nlrwxrwxrwx   1 root root    7 Jan 25 14:04 bin -&gt; usr/bin\ndrwxr-xr-x   2 root root 4096 Apr 18  2022 boot\ndrwxr-xr-x   5 root root  360 Feb  4 06:39 dev\ndrwxr-xr-x   1 root root 4096 Feb  4 06:39 etc\ndrwxr-xr-x   2 root root 4096 Apr 18  2022 home\nlrwxrwxrwx   1 root root    7 Jan 25 14:04 lib -&gt; usr/lib\ndrwxr-xr-x   2 root root 4096 Jan 25 14:04 media\ndrwxr-xr-x   2 root root 4096 Jan 25 14:04 mnt\ndrwxr-xr-x   2 root root 4096 Jan 25 14:04 opt\ndr-xr-xr-x 286 root root    0 Feb  4 06:39 proc\ndrwx------   2 root root 4096 Jan 25 14:09 root\ndrwxr-xr-x   5 root root 4096 Jan 25 14:09 run\nlrwxrwxrwx   1 root root    8 Jan 25 14:04 sbin -&gt; usr/sbin\ndrwxr-xr-x   2 root root 4096 Jan 25 14:04 srv\ndr-xr-xr-x  12 root root    0 Feb  4 06:39 sys\ndrwxrwxrwt   2 root root 4096 Jan 25 14:09 tmp\ndrwxr-xr-x  11 root root 4096 Jan 25 14:04 usr\ndrwxr-xr-x  11 root root 4096 Jan 25 14:09 var\nThe cd command enables to change the shell working directory:\nroot@0e52c467700c:/# cd bin\nroot@0e52c467700c:/bin#\nAnd the pwd returns the current working directory:\nroot@0e52c467700c:/bin# pwd\n/bin\nLast but not least, the .. reference the directory above the current path:\ncd ..\nroot@0e52c467700c:/#",
+    "crumbs": [
+      "Home",
+      "Core CLI Commands"
+    ]
+  },
+  {
+    "objectID": "cli-commands.html#working-with-files-and-directories",
+    "href": "cli-commands.html#working-with-files-and-directories",
+    "title": "Core CLI Commands",
+    "section": "Working with files and directories",
+    "text": "Working with files and directories\nThe mkdir (i.e., make directory) command enables to create a directory:\nroot@0e52c467700c:/# mkdir test\nroot@0e52c467700c:/# cd test/\nroot@0e52c467700c:/test#\nThere are many ways to create and view files via the CLI. In the following example, we will create a bash script named hellow_world.sh that print Hello World!. We will use the touch command to create an empty bash script file:\nroot@0e52c467700c:/test# touch hello_world.sh\nYou can use the ls command to confirm that the file was created:\nroot@0e52c467700c:/test# ls\nhello_world.sh\nIn the CLI the echo command is used to print text, and can be use to write text into a file with the &gt; symbol. As we want the bash script to print Hello World! we will write to the file echo \"Hello World!\":\necho echo \"Hello World!\" &gt; hello_world.sh\nTo print the content of the file, we will use the cat command:\nroot@0e52c467700c:/test# cat hello_world.sh\necho Hello World!\nWe can now execute the file using the bash command:\nroot@0e52c467700c:/test# bash hello_world.sh\nHello World!\nNote: The &gt; symbol is used to add new text to a file. If the file has already any text, it will overwrite the previous text with the new text. To append new text use the &gt;&gt; symbol:\nroot@0e52c467700c:/test# echo echo \"Hello World 2!\" &gt;&gt; hello_world.sh\nroot@0e52c467700c:/test# cat hello_world.sh\necho Hello World!\necho Hello World 2!\nroot@0e52c467700c:/test# bash hello_world.sh\nHello World!\nHello World 2!\nThe rm command (i.e., remove), enables to delete or remove files and folders. For example, let’s now delete the bash script we created above - hello_world.sh:\nroot@0e52c467700c:/test# rm hello_world.sh\nYou can use the ls command to confirm that the file was deleted:\nroot@0e52c467700c:/test# ls\nroot@0e52c467700c:/test#\nSimlarly, you can use the rm command to delete folders. Let’s remove the test folder we created:\nrm -rf test/\nThe r arguments used to remove directories and their contents recursively, and the f argument to ignore nonexistent files and arguments.",
+    "crumbs": [
+      "Home",
+      "Core CLI Commands"
+    ]
+  },
+  {
+    "objectID": "cli-commands.html#variables",
+    "href": "cli-commands.html#variables",
+    "title": "Core CLI Commands",
+    "section": "Variables",
+    "text": "Variables\nAnother common use case of command line functionality is the use of variables and environment variables. Assigning values to variables from the CLI is strightforward and fairly similar to other programming languages such as R and Python using the = symbol. For example, let’s assing the variable x the value 10:\nroot@0e52c467700c:/# x=10\nNote: Unlike R or Python, the CLI is sensetive for spaces when assinging values to variables. Using spaces would ended up with error as it\nroot@0e52c467700c:/# x = 10\nbash: x: command not found\nSimilarly, typing the variable name would ended up with an error, as the shell interparter is expecting for a command. For example, this would results with an error:\nroot@0e52c467700c:/# x\nbash: x: command not found\nTo reffer to variables on the CLI, attach the $ sign before the variable name. For example, we will use the echo command to print the variable x we created above:\nroot@0e52c467700c:/# echo $x\n10\n\nAssign Variable to Bash Script\nOften, when building containers, we will use bash scripts as helper files. For example, the following bash script is used to install Quarto during the build time of the image with the use of variables. It has the following functionality: - Receive input from the user with the Quarto version and assing the value to a variable name QUARTO_VERSION - Use the uname command to evluate the CPU type and assign it to a variable name CPU - Use the wget function to pull the relevent Quarto build and install it with the dpkg function\ninstall_quarto.sh\n#!/usr/bin/env bash\nQUARTO_VERSION=$1 \n\necho \"Installing Quarto version $QUARTO_VERSION\"\n\n# Identify the CPU type (M1 vs Intel)\nif [[ $(uname -m) ==  \"aarch64\" ]] ; then\n  CPU=\"arm64\"\nelif [[ $(uname -m) ==  \"arm64\" ]] ; then\n  CPU=\"arm64\"\nelse\n  CPU=\"amd64\"\nfi\n\nTEMP_QUARTO=\"$(mktemp)\" && \\\n    wget -q  -O \"$TEMP_QUARTO\" https://github.com/quarto-dev/quarto-cli/releases/download/v$QUARTO_VERSION/quarto-${QUARTO_VERSION}-linux-${CPU}.deb && \\\n    dpkg -i \"$TEMP_QUARTO\" && \\\n    rm -f \"$TEMP_QUARTO\"\nHere is how you would execute the script:\nbash install_quarto.sh \"1.3.450\"\nWhere bash will index the variables by their order of assignment starting with 1. In the above case, as we have a single variable it will be index as 1 and referenced in the script as $1\n\n\nSetting Environment Variables\nThe use of environment variables in the Docker development workflow is a very useful tool. It enables you to unify your settings with having multiple users. In addition, it enables you to parameterize your settings and avoid hard coding some of the functionality of your image, such as the R or Python versions. We use the export command on the CLI to set an environment variable. For example, let’s reset x as an enviroment variable and assign the value 10 from the CLI:\nroot@0e52c467700c:/# export x=10\nroot@0e52c467700c:/# echo $x\n10\nOn Linux distro, you typically use the bash .bashrc file to add your setting and set environment variables. For example, if we want to set the x variabe we created before as environment variable we would add the",
+    "crumbs": [
+      "Home",
+      "Core CLI Commands"
+    ]
   }
 ]
