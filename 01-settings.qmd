@@ -4,6 +4,15 @@ title: "Settings"
 
 To follow this tutorial, you'll need to set up Docker Desktop and VScode. Plus, you'll have to create an account on Docker Hub. This section is dedicated to the workshop settings and covers the installation and configuration of Docker and VScode.
 
+## Workshop Materials
+
+All the workshop materials avaialble on the below repository:
+
+https://github.com/RamiKrispin/sdsu-docker-workshop
+
+Please fork and clone to your local machine.
+
+
 ## Setting Docker
 Various ways exist to build and run Docker images on different operations systems. For the purpose of this guide, we will be utilizing Docker Desktop. It is a user-friendly container management interface that is compatible with MacOS, Windows, and Linux operating systems.
 

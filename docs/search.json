@@ -217,5 +217,16 @@
       "Home",
       "CLI Commands"
     ]
+  },
+  {
+    "objectID": "01-settings.html#workshop-materials",
+    "href": "01-settings.html#workshop-materials",
+    "title": "Settings",
+    "section": "Workshop Materials",
+    "text": "Workshop Materials\nAll the workshop materials avaialble on the below repository:\nhttps://github.com/RamiKrispin/sdsu-docker-workshop\nPlease fork and clone to your local machine.",
+    "crumbs": [
+      "Home",
+      "Settings"
+    ]
   }
 ]
