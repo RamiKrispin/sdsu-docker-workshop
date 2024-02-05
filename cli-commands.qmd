@@ -1,10 +1,10 @@
 ---
-title: "Core CLI Commands"
+title: "CLI Commands"
 ---
 This section focuses on the command line (CLI) core commands. Typically, when working with Docker and containers, we will use some flavor of Linux OS, such as Ubuntu, Alpine, etc. Throughout this workshop, we will use Ubuntu unless stated otherwise. We will start by pulling the official Ubuntu image and launch a container using the `run` command from the terminal:
 
 ``` shell
-  docker pull ubuntu:22.04                
+docker pull ubuntu:22.04                
 22.04: Pulling from library/ubuntu
 b91d8878f844: Pull complete
 Digest: sha256:e9569c25505f33ff72e88b2990887c9dcf230f23259da296eb814fc2b41af999
