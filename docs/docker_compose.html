@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>sdsu-docker-workshop - CLI Commands</title>
+<title>sdsu-docker-workshop - Docker Compose</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cli-commands.html">CLI Commands</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker_compose.html">Docker Compose</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cli-commands.html" class="sidebar-item-text sidebar-link active">
+  <a href="./cli-commands.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CLI Commands</span></a>
   </div>
 </li>
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker_compose.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker_compose.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Docker Compose</span></a>
   </div>
 </li>
@@ -215,26 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#basic-cli-commands" id="toc-basic-cli-commands" class="nav-link active" data-scroll-target="#basic-cli-commands">Basic CLI Commands</a></li>
-  <li><a href="#working-with-files-and-directories" id="toc-working-with-files-and-directories" class="nav-link" data-scroll-target="#working-with-files-and-directories">Working with files and directories</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a>
-  <ul class="collapse">
-  <li><a href="#assign-variable-to-bash-script" id="toc-assign-variable-to-bash-script" class="nav-link" data-scroll-target="#assign-variable-to-bash-script">Assign Variable to Bash Script</a></li>
-  <li><a href="#setting-environment-variables" id="toc-setting-environment-variables" class="nav-link" data-scroll-target="#setting-environment-variables">Setting Environment Variables</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CLI Commands</h1>
+<h1 class="title">Docker Compose</h1>
 </div>
 
 
@@ -251,142 +239,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This section focuses on the command line (CLI) core commands. Typically, when working with Docker and containers, we will use some flavor of Linux OS, such as Ubuntu, Alpine, etc. Throughout this workshop, we will use Ubuntu unless stated otherwise. We will start by pulling the official Ubuntu image and launch a container using the <code>run</code> command from the terminal:</p>
-<pre class="shell"><code>docker pull ubuntu:22.04                
-22.04: Pulling from library/ubuntu
-b91d8878f844: Pull complete
-Digest: sha256:e9569c25505f33ff72e88b2990887c9dcf230f23259da296eb814fc2b41af999
-Status: Downloaded newer image for ubuntu:22.04
-docker.io/library/ubuntu:22.04</code></pre>
-<p>We use the <code>interactive</code> and <code>tty</code> arguments to ssh inside the container:</p>
-<pre><code> docker run --interactive --tty ubuntu:22.04 </code></pre>
-<p>This will ssh into the container terminal:</p>
-<pre class="shell"><code>root@0e52c467700c:/#</code></pre>
-<section id="basic-cli-commands" class="level2">
-<h2 class="anchored" data-anchor-id="basic-cli-commands">Basic CLI Commands</h2>
-<p>The <code>ls</code> command lists the files and directories in the current directory (or a different directory when provided a path):</p>
-<pre class="shell"><code>root@0e52c467700c:/# ls
-bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre>
-<p>By default, the <code>ls</code> command won’t display hidden files (e.g., starts with <code>.</code>). To display all files, use the <code>-a</code> argument:</p>
-<pre class="shell"><code>root@0e52c467700c:/# ls -a
-.  ..  .dockerenv  bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre>
-<p>Similarly, the <code>-l</code> argument will display the output in a long listing format:</p>
-<pre class="shell"><code>root@0e52c467700c:/# ls -l
-total 48
-lrwxrwxrwx   1 root root    7 Jan 25 14:04 bin -&gt; usr/bin
-drwxr-xr-x   2 root root 4096 Apr 18  2022 boot
-drwxr-xr-x   5 root root  360 Feb  4 06:39 dev
-drwxr-xr-x   1 root root 4096 Feb  4 06:39 etc
-drwxr-xr-x   2 root root 4096 Apr 18  2022 home
-lrwxrwxrwx   1 root root    7 Jan 25 14:04 lib -&gt; usr/lib
-drwxr-xr-x   2 root root 4096 Jan 25 14:04 media
-drwxr-xr-x   2 root root 4096 Jan 25 14:04 mnt
-drwxr-xr-x   2 root root 4096 Jan 25 14:04 opt
-dr-xr-xr-x 286 root root    0 Feb  4 06:39 proc
-drwx------   2 root root 4096 Jan 25 14:09 root
-drwxr-xr-x   5 root root 4096 Jan 25 14:09 run
-lrwxrwxrwx   1 root root    8 Jan 25 14:04 sbin -&gt; usr/sbin
-drwxr-xr-x   2 root root 4096 Jan 25 14:04 srv
-dr-xr-xr-x  12 root root    0 Feb  4 06:39 sys
-drwxrwxrwt   2 root root 4096 Jan 25 14:09 tmp
-drwxr-xr-x  11 root root 4096 Jan 25 14:04 usr
-drwxr-xr-x  11 root root 4096 Jan 25 14:09 var</code></pre>
-<p>The <code>cd</code> command enables to change the shell working directory:</p>
-<pre class="shell"><code>root@0e52c467700c:/# cd bin
-root@0e52c467700c:/bin#</code></pre>
-<p>The <code>pwd</code> returns the current working directory:</p>
-<pre class="shell"><code>root@0e52c467700c:/bin# pwd
-/bin</code></pre>
-<p>Last but not least, the <code>..</code> reference the directory above the current path:</p>
-<pre class="shell"><code>cd ..
-root@0e52c467700c:/#</code></pre>
-</section>
-<section id="working-with-files-and-directories" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-files-and-directories">Working with files and directories</h2>
-<p>The <code>mkdir</code> (i.e., make directory) command enables to create a directory:</p>
-<pre class="shell"><code>root@0e52c467700c:/# mkdir test
-root@0e52c467700c:/# cd test/
-root@0e52c467700c:/test#</code></pre>
-<p>There are many ways to create and view files via the CLI. In the following example, we will create a bash script named <code>hellow_world.sh</code> that print <code>Hello World!</code>. We will use the <code>touch</code> command to create an empty bash script file:</p>
-<pre class="shell"><code>root@0e52c467700c:/test# touch hello_world.sh</code></pre>
-<p>You can use the <code>ls</code> command to confirm that the file was created:</p>
-<pre class="shell"><code>root@0e52c467700c:/test# ls
-hello_world.sh</code></pre>
-<p>In the CLI, the <code>echo</code> command is used to print text and can be used to write text into a file with the <code>&gt;</code> symbol. As we want the bash script to print <code>Hello World!</code> we will write to the file <code>echo "Hello World!"</code>:</p>
-<pre class="shell"><code>echo echo "Hello World!" &gt; hello_world.sh</code></pre>
-<p>To print the content of the file, we will use the <code>cat</code> command:</p>
-<pre class="shell"><code>root@0e52c467700c:/test# cat hello_world.sh
-echo Hello World!</code></pre>
-<p>We can now execute the file using the <code>bash</code> command:</p>
-<pre class="shell"><code>root@0e52c467700c:/test# bash hello_world.sh
-Hello World!</code></pre>
-<p><strong>Note:</strong> The <code>&gt;</code> symbol is used to add new text to a file. If the file already has any text, it will overwrite the previous text with the new text. To append new text, use the <code>&gt;&gt;</code> symbol:</p>
-<pre class="shell"><code>root@0e52c467700c:/test# echo echo "Hello World 2!" &gt;&gt; hello_world.sh
-root@0e52c467700c:/test# cat hello_world.sh
-echo Hello World!
-echo Hello World 2!
-root@0e52c467700c:/test# bash hello_world.sh
-Hello World!
-Hello World 2!</code></pre>
-<p>The <code>rm</code> command (i.e., remove), enables to delete or remove files and folders. For example, let’s now delete the bash script we created above - <code>hello_world.sh</code>:</p>
-<pre class="shell"><code>root@0e52c467700c:/test# rm hello_world.sh</code></pre>
-<p>You can use the <code>ls</code> command to confirm that the file was deleted:</p>
-<pre class="shell"><code>root@0e52c467700c:/test# ls
-root@0e52c467700c:/test#</code></pre>
-<p>Similarly, you can use the <code>rm</code> command to delete folders. Let’s remove the test folder we created:</p>
-<pre class="shell"><code>rm -rf test/</code></pre>
-<p>The <code>r</code> arguments are used to remove directories and their contents recursively, and the <code>f</code> argument to ignore nonexistent files and arguments.</p>
-</section>
-<section id="variables" class="level2">
-<h2 class="anchored" data-anchor-id="variables">Variables</h2>
-<p>Another common use case of command line functionality is the use of variables and environment variables. Assigning values to variables from the CLI is straightforward and fairly similar to other programming languages, such as R and Python, using the <code>=</code> symbol. For example, let’s assign the variable <code>x</code> the value <code>10</code>:</p>
-<pre class="shell"><code>root@0e52c467700c:/# x=10</code></pre>
-<p><strong>Note:</strong>Unlike R or Python, the CLI is sensitive to spaces when assigning values to variables. Using spaces would end up with error as it</p>
-<pre class="shell"><code>root@0e52c467700c:/# x = 10
-bash: x: command not found</code></pre>
-<p>Similarly, typing the variable name would end up with an error, as the shell interpreter is expecting a command. For example, the below code would results in an error:</p>
-<pre class="shell"><code>root@0e52c467700c:/# x
-bash: x: command not found</code></pre>
-<p>To refer to variables on the CLI, attach the <code>$</code> sign before the variable name. For example, we will use the <code>echo</code> command to print the variable <code>x</code> we created above:</p>
-<pre class="shell"><code>root@0e52c467700c:/# echo $x
-10</code></pre>
-<section id="assign-variable-to-bash-script" class="level3">
-<h3 class="anchored" data-anchor-id="assign-variable-to-bash-script">Assign Variable to Bash Script</h3>
-<p>When building containers, we often use bash scripts as helper files. For example, the following bash script is used to install Quarto during the build time of the image with the use of variables. It has the following functionality: - Receive input from the user with the Quarto version and assign the value to a variable name <code>QUARTO_VERSION</code> - Use the <code>uname</code> command to evaluate the CPU type and assign it to a variable name <code>CPU</code> - Use the <code>wget</code> function to pull the relevant Quarto build and install it with the <code>dpkg</code> function</p>
-<p><code>install_quarto.sh</code></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_VERSION</span><span class="op">=</span><span class="va">$1</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Installing Quarto version </span><span class="va">$QUARTO_VERSION</span><span class="st">"</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the CPU type (M1 vs Intel)</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span> <span class="ot">==</span>  <span class="st">"aarch64"</span> <span class="kw">]]</span> <span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">CPU</span><span class="op">=</span><span class="st">"arm64"</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="kw">[[</span> <span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span> <span class="ot">==</span>  <span class="st">"arm64"</span> <span class="kw">]]</span> <span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">CPU</span><span class="op">=</span><span class="st">"arm64"</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">CPU</span><span class="op">=</span><span class="st">"amd64"</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="va">TEMP_QUARTO</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="fu">mktemp</span><span class="va">)</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> <span class="at">-q</span>  <span class="at">-O</span> <span class="st">"</span><span class="va">$TEMP_QUARTO</span><span class="st">"</span> https://github.com/quarto-dev/quarto-cli/releases/download/v<span class="va">$QUARTO_VERSION</span>/quarto-<span class="va">${QUARTO_VERSION}</span>-linux-<span class="va">${CPU}</span>.deb <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">dpkg</span> <span class="at">-i</span> <span class="st">"</span><span class="va">$TEMP_QUARTO</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="at">-f</span> <span class="st">"</span><span class="va">$TEMP_QUARTO</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here is how you would execute the script:</p>
-<pre class="shell"><code>bash install_quarto.sh "1.3.450"</code></pre>
-<p>Where bash will index the variables by their order of assignment starting with 1. In the above case, as we have a single variable, it will be indexed as 1 and referenced in the script as <code>$1</code></p>
-</section>
-<section id="setting-environment-variables" class="level3">
-<h3 class="anchored" data-anchor-id="setting-environment-variables">Setting Environment Variables</h3>
-<p>The use of environment variables in the Docker development workflow is a very useful tool. It enables you to unify your settings with having multiple users. In addition, it enables you to parameterize your settings and avoid hard-coding some of the functionality of your image, such as the R or Python versions. We use the <code>export</code> command on the CLI to set an environment variable. For example, let’s reset <code>x</code> as an environment variable and assign the value <code>10</code> from the CLI:</p>
-<pre class="shell"><code>root@0e52c467700c:/# export x=10
-root@0e52c467700c:/# echo $x
-10</code></pre>
-<p>On Linux distro, you typically use the bash <code>.bashrc</code> file to add your setting and set environment variables. For example, if we want to set the <code>x</code> variabe we created before as environment variable we would add the</p>
+<p>Using the <code>docker run</code> command with many arguments could become convoluted, mainly when repeating the process regularly. This is when you should consider using Docker Compose to launch your container. Docker Compose is a wrapper for the run command that uses the YAML file. In addition, it enables the orchestration of multiple containers.</p>
+<p>For example, the following <code>docker run</code> command launches a docker with RStudio Server inside a containerized environment:</p>
+<pre class="shell"><code>docker run --rm -ti -v .:/home/rstudio -e PASSWORD=yourpassword -p 8787:8787 rocker/rstudio</code></pre>
+<p>Where we use the following arguments:</p>
+<ul>
+<li><code>rm</code> - Automatically remove the container when it exits</li>
+<li><code>ti</code> - Run the container in an interactive mode</li>
+<li><code>v</code> - Bind mount a volume, used to mount a local folder with the container</li>
+<li><code>e</code> - Set environment variables, used to define the login password to the RStudio Server</li>
+<li><code>p</code> - Defines the ports mapping</li>
+</ul>
+<p>Here is how we going to populate the above <code>run</code> command inside a container:</p>
+<p><code>docker-compose.yml</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.9"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rstudio</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">"rocker/rstudio"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8787:8787"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> </span><span class="st">"bind"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">source</span><span class="kw">:</span><span class="at"> </span><span class="st">"."</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">target</span><span class="kw">:</span><span class="at"> </span><span class="st">"/home/rstudio"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> PASSWORD=yourpassword</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>version</code> argument defines the Docker Compose version, and the <code>services</code> enable the definition of multiple containers. In this case, we define a single container and name it as <code>rstudio</code>. As you can see, we used the <code>ports</code>, <code>volumes</code>, and <code>environment</code> arguments to map the <code>p</code>, <code>v</code>, and <code>e</code> arguments we used with the <code>run</code> command above respectively.</p>
+<p>To launch the container - from the same folder of the <code>docker-compose.yml</code> file, use the <code>docker-compose</code> command:</p>
+<pre class="shell"><code>docker-compose up</code></pre>
+<p>You should expect the following output:</p>
+<pre class="shell"><code>[+] Running 2/2
+ ✔ Network rstudio_default      Created                                                                                                                                                                          0.1s
+ ✔ Container rstudio-rstudio-1  Created                                                                                                                                                                          0.1s
+Attaching to rstudio-rstudio-1
+rstudio-rstudio-1  | [s6-init] making user provided files available at /var/run/s6/etc...
+rstudio-rstudio-1  | exited 0.
+rstudio-rstudio-1  | [s6-init] ensuring user provided files have correct perms...
+rstudio-rstudio-1  | exited 0.
+rstudio-rstudio-1  | [fix-attrs.d] applying ownership &amp; permissions fixes...
+rstudio-rstudio-1  | [fix-attrs.d] done.
+rstudio-rstudio-1  | [cont-init.d] executing container initialization scripts...
+rstudio-rstudio-1  | [cont-init.d] 01_set_env: executing...
+rstudio-rstudio-1  | skipping /var/run/s6/container_environment/HOME
+rstudio-rstudio-1  | skipping /var/run/s6/container_environment/PASSWORD
+rstudio-rstudio-1  | skipping /var/run/s6/container_environment/RSTUDIO_VERSION
+rstudio-rstudio-1  | [cont-init.d] 01_set_env: exited 0.
+rstudio-rstudio-1  | [cont-init.d] 02_userconf: executing...
+rstudio-rstudio-1  | [cont-init.d] 02_userconf: exited 0.
+rstudio-rstudio-1  | [cont-init.d] done.
+rstudio-rstudio-1  | [services.d] starting services
+rstudio-rstudio-1  | [services.d] done.</code></pre>
+<p>You can now open RStudio by login to <code>http://localhost:8787</code> on your local browser:</p>
+<figure class="figure">
+<img src="images/rstudio.png" width="100%" align="center" class="figure-img">
+<figcaption>
+Figure 1 - Running RStudio Server from the browser with Docker Compose
+</figcaption>
+</figure>
+<p><br></p>
+<p><strong>Note:</strong> The <code>docker-compose up</code> command we used above keeps the terminal attached to the container, and to stop the container use <code>control+C</code>. Alternatively, you can add the <code>d</code> argument to launch the container in <code>detach</code> mode running in the background:</p>
+<pre class="shell"><code>docker-compose up -d
+
+[+] Running 1/1
+ ✔ Container rstudio-rstudio-1  Started</code></pre>
+<p>To stop the container, use <code>down</code> command:</p>
+<pre class="shell"><code>docker-compose down
+
+[+] Running 2/2
+ ✔ Container rstudio-rstudio-1  Removed
+ ✔ Network rstudio_default      Removed</code></pre>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

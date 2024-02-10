@@ -4,14 +4,13 @@ project:
   output-dir: docs
   render:
     - index.qmd
-    - about.qmd
-    - 01-settings.qmd
-    - 02-workflow.qmd
+    - settings.qmd
+    - workflow.qmd
     - cli-commands.qmd 
-    - 03-the_dockerfile.qmd
-    - 04-build.qmd
-    - 05-run.qmd
-    - 06-docker_compose.qmd
+    - the_dockerfile.qmd
+    - build.qmd
+    - run.qmd
+    - docker_compose.qmd
 
 website:
   title: "sdsu-docker-workshop"
@@ -19,19 +18,18 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
   sidebar:
     style: "docked"
     search: true
     contents: 
       - index.qmd
-      - 01-settings.qmd
-      - 02-workflow.qmd
+      - settings.qmd
+      - workflow.qmd
       - cli-commands.qmd
-      - 03-the_dockerfile.qmd
-      - 04-build.qmd
-      - 05-run.qmd
-      - 06-docker_compose.qmd 
+      - the_dockerfile.qmd
+      - build.qmd
+      - run.qmd
+      - docker_compose.qmd 
 
 format:
   html:

@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  rstudio:
+    image: "rocker/rstudio"
+    ports:
+      - "8787:8787"
+    volumes:
+      - type: "bind"
+        source: "."
+        target: "/home/rstudio"
+      # - type: "bind"
+      #   source: "$RSTUDIO_CONFIG_PATH"
+      #   target: "/home/rstudio/.config/rstudio"
+    environment:
+      - PASSWORD=yourpassword

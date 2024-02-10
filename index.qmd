@@ -8,11 +8,11 @@ author: "Rami Krispin"
 Welcome to the Docker for Data Science workshop! As its name implies, this workshop focuses on the foundations of Docker with data science applications. That includes the following topics:
 
 - Settings
-- Motivation
 - Workflow
+- CLI Commands
 - The Dockerfile
-- Build
-- Run
+- Docker Build
+- Docker Run
 - Docker Compose
 
 
@@ -56,3 +56,19 @@ To best utilize the workshop time, please install [Docker Desktop](https://www.d
 I am going to use VScode throughout the demos, and I recommend installing [VScode](https://code.visualstudio.com/) as well to follow along.
 
 The [Settings](https://ramikrispin.github.io/sdsu-docker-workshop/01-settings.html) section provides the installation instructions.
+
+
+## Resources
+
+- [Workshop repository](https://github.com/RamiKrispin/sdsu-docker-workshop)
+- [Running Python/R with Docker vs. Virtual Environment](https://medium.com/p/4a62ed36900f)
+- [Docker website](https://www.docker.com/)
+- [Docker Hub](https://hub.docker.com/)
+- [Command line tutorial](https://www.youtube.com/watch?v=ZtqBQ68cfJc)
+- [Docker tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo)
+- [Setting up a dockerized Python development environment tutorial](https://github.com/RamiKrispin/vscode-python)
+- [Setting up a dockerized R development environment tutorial](https://github.com/RamiKrispin/vscode-r)
+
+## License 
+
+This workshop is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) License.

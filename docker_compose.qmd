@@ -1,0 +1,102 @@
+---
+title: "Docker Compose"
+---
+
+Using the `docker run` command with many arguments could become convoluted, mainly when repeating the process regularly. This is when you should consider using Docker Compose to launch your container. Docker Compose is a wrapper for the run command that uses the YAML file. In addition, it enables the orchestration of multiple containers.
+
+
+For example, the following `docker run` command launches a docker with RStudio Server inside a containerized environment:
+
+```shell
+docker run --rm -ti -v .:/home/rstudio -e PASSWORD=yourpassword -p 8787:8787 rocker/rstudio
+```
+
+Where we use the following arguments:
+
+- `rm` - Automatically remove the container when it exits
+- `ti` - Run the container in an interactive mode
+- `v` - Bind mount a volume, used to mount a local folder with the container
+- `e` - Set environment variables, used to define the login password to the RStudio Server
+- `p` - Defines the ports mapping
+
+
+Here is how we going to populate the above `run` command inside a container:
+
+`docker-compose.yml`
+```yml
+version: "3.9"
+services:
+  rstudio:
+    image: "rocker/rstudio"
+    ports:
+      - "8787:8787"
+    volumes:
+      - type: "bind"
+        source: "."
+        target: "/home/rstudio"
+    environment:
+      - PASSWORD=yourpassword
+```
+
+The `version` argument defines the Docker Compose version, and the `services` enable the definition of multiple containers. In this case, we define a single container and name it as `rstudio`. As you can see, we used the `ports`, `volumes`, and `environment` arguments to map the `p`, `v`, and `e` arguments we used with the `run` command above respectively.
+
+
+To launch the container - from the same folder of the `docker-compose.yml` file, use the `docker-compose` command:
+
+```shell
+docker-compose up
+```
+
+You should expect the following output:
+
+```shell
+[+] Running 2/2
+ ✔ Network rstudio_default      Created                                                                                                                                                                          0.1s
+ ✔ Container rstudio-rstudio-1  Created                                                                                                                                                                          0.1s
+Attaching to rstudio-rstudio-1
+rstudio-rstudio-1  | [s6-init] making user provided files available at /var/run/s6/etc...
+rstudio-rstudio-1  | exited 0.
+rstudio-rstudio-1  | [s6-init] ensuring user provided files have correct perms...
+rstudio-rstudio-1  | exited 0.
+rstudio-rstudio-1  | [fix-attrs.d] applying ownership & permissions fixes...
+rstudio-rstudio-1  | [fix-attrs.d] done.
+rstudio-rstudio-1  | [cont-init.d] executing container initialization scripts...
+rstudio-rstudio-1  | [cont-init.d] 01_set_env: executing...
+rstudio-rstudio-1  | skipping /var/run/s6/container_environment/HOME
+rstudio-rstudio-1  | skipping /var/run/s6/container_environment/PASSWORD
+rstudio-rstudio-1  | skipping /var/run/s6/container_environment/RSTUDIO_VERSION
+rstudio-rstudio-1  | [cont-init.d] 01_set_env: exited 0.
+rstudio-rstudio-1  | [cont-init.d] 02_userconf: executing...
+rstudio-rstudio-1  | [cont-init.d] 02_userconf: exited 0.
+rstudio-rstudio-1  | [cont-init.d] done.
+rstudio-rstudio-1  | [services.d] starting services
+rstudio-rstudio-1  | [services.d] done.
+```
+
+
+You can now open RStudio by login to `http://localhost:8787` on your local browser:
+
+<figure>
+ <img src="images/rstudio.png" width="100%" align="center"/></a>
+<figcaption> Figure 1 - Running RStudio Server from the browser with Docker Compose</figcaption>
+</figure>
+
+<br>
+
+**Note:** The `docker-compose up` command we used above keeps the terminal attached to the container, and to stop the container use `control+C`. Alternatively, you can add the `d` argument to launch the container in `detach` mode running in the background:
+
+```shell
+docker-compose up -d
+
+[+] Running 1/1
+ ✔ Container rstudio-rstudio-1  Started
+```
+
+To stop the container, use `down` command:
+```shell
+docker-compose down
+
+[+] Running 2/2
+ ✔ Container rstudio-rstudio-1  Removed
+ ✔ Network rstudio_default      Removed
+```

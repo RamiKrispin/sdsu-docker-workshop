@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>sdsu-docker-workshop</title>
+<title>sdsu-docker-workshop - The Dockerfile</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -107,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./the_dockerfile.html">the_dockerfile.html</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./the_dockerfile.html">The Dockerfile</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -130,31 +164,49 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Docker Workshop</span></a>
+ <span class="menu-text">Docker Workshop 🐳</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">About</span></a>
+  <a href="./settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Settings</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflow</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cli-commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLI Commands</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./the_dockerfile.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">the_dockerfile.html</span></a>
+ <span class="menu-text">The Dockerfile</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./build.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">build.html</span></a>
+ <span class="menu-text">Docker Build</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./run.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">run.html</span></a>
+ <span class="menu-text">Docker Run</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker_compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Docker Compose</span></a>
   </div>
 </li>
     </ul>
@@ -168,9 +220,51 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Dockerfile</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The <code>Dockerfile</code> provides a set of instructions for the Docker engine about how to build the image. You can think about it as the image’s recipe. It has its own unique and intuitive syntax using the following structure:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>COMMAND some instructions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example, the following <code>Dockerfile</code> imports the official Python (version 3.10) image as the base image and then using the <code>apt-get update</code> and <code>apt-get install</code> to install the <code>curl</code> library :</p>
+<p><code>./examples/ex-1/Dockerfile</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.10</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LABEL</span> example=1</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> PYTHON_VER=3.10</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="at">--no-install-recommends</span> curl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In a nutshell, we used the <code>FROM</code> command to specify the image we want to import from the Docker registry (don’t forget to login to the Docker registry service you are using before building the image!). The <code>LABEL</code> command is used to set labels or comments, and the <code>ENV</code> command is to set environment variables. Last but not least, the <code>RUN</code> command is used to run a command on the command line, in this case, to install the <code>curl</code> library.</p>
+<p>Let’s now review the Dockerfile core commands:</p>
+<ul>
+<li><code>FROM</code> - Defines the base image to use for the image’s build. In most cases, unless you are building the image from scratch, you will use some base image with some pre-installed OS and some dependencies. For example, in this tutorial, we will import as our base image the official <a href="https://hub.docker.com/_/python">Python image</a></li>
+<li><code>LABEL</code> - Enables to add information about the image to the image’s metadata, such as authors, maintainers, license, etc.</li>
+<li><code>ENV</code> - Uses to set environment variables</li>
+<li><code>ARG</code> - Enables to set parameters during the build time</li>
+<li><code>RUN</code> - Allows executing CLI commands (e.g., <code>pip install ...</code>, <code>apt-get ...</code>, <code>apt-install...</code>, <code>wget...</code>, etc.) during the build time to add additional components to the base image</li>
+<li><code>COPY</code> - Enables to copy objects (e.g., files and folders) from your local system to the image</li>
+<li><code>WORKDIR</code> - Sets the working directory inside the image</li>
+<li><code>EXPOSE</code> - Defines the port number to expose the image during the run time</li>
+<li><code>CMD</code> - Sets a default command to execute during the run time of the image</li>
+<li><code>ENDPOINT</code> - Allows configuring a container that will run as an executable</li>
+</ul>
+<p>Do not worry if, at this point, you do not fully understand the use cases of some of those commands. It will make more sense when we start to build images in the next section.</p>
 
 
 

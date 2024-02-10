@@ -1,0 +1,43 @@
+---
+title: "The Dockerfile"
+---
+
+The `Dockerfile` provides a set of instructions for the Docker engine about how to build the image. You can think about it as the image's recipe. It has its own unique and intuitive syntax using the following structure:
+
+``` Dockerfile
+COMMAND some instructions
+```
+
+For example, the following `Dockerfile` imports the official Python (version 3.10) image as the base image and then using the `apt-get update` and `apt-get install` to install the `curl` library :
+
+
+`./examples/ex-1/Dockerfile`
+``` Dockerfile
+FROM python:3.10
+
+LABEL example=1
+
+ENV PYTHON_VER=3.10
+
+RUN apt-get update && apt-get install -y --no-install-recommends curl
+```
+
+In a nutshell, we used the `FROM` command to specify the image we want to import from the Docker registry (don't forget to login to the Docker registry service you are using before building the image!). The `LABEL` command is used to set labels or comments, and the `ENV` command is to set environment variables. Last but not least, the `RUN` command is used to run a command on the command line, in this case, to install the `curl` library.
+
+Let's now review the Dockerfile core commands:
+
+- `FROM` - Defines the base image to use for the image's build. In most cases, unless you are building the image from scratch, you will use some base image with some pre-installed OS and some dependencies. For example, in this tutorial, we will import as our base image the official [Python image](https://hub.docker.com/_/python)
+- `LABEL` - Enables to add information about the image to the image's metadata, such as authors, maintainers, license, etc.
+- `ENV` - Uses to set environment variables
+- `ARG` - Enables to set parameters during the build time
+- `RUN` -  Allows executing CLI commands (e.g., `pip install ...`, `apt-get ...`, `apt-install...`, `wget...`, etc.) during the build time to add additional components to the base image
+- `COPY` - Enables to copy objects (e.g., files and folders) from your local system to the image 
+- `WORKDIR` - Sets the working directory inside the image
+- `EXPOSE` - Defines the port number to expose the image during the run time
+- `CMD` - Sets a default command to execute during the run time of the image
+- `ENDPOINT` - Allows configuring a container that will run as an executable
+
+Do not worry if, at this point, you do not fully understand the use cases of some of those commands. It will make more sense when we start to build images in the next section.
+
+
+
