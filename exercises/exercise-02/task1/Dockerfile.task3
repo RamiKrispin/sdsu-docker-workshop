@@ -1,6 +1,7 @@
 FROM python:3.10
 
-ENV PYTHON_ENV=workshop_env
+ARG PYTHON_ENV=my_env
+ENV PYTHON_ENV=$PYTHON_ENV
 
 RUN mkdir requirements
 
